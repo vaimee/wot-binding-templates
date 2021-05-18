@@ -12,16 +12,16 @@
 @base <https://www.w3.org/2019/wot/modbus> .
 
 <https://www.w3.org/2019/wot/modbus> rdf:type owl:Ontology ;
-                                      dct:author _:genid1 ;
-                                      dct:contributor _:genid1 ;
+                                      dct:author "Jakob Müller" ;
+                                      dct:contributor "Cristiano Aguzzi" ,
+                                                      "Elisa Riforgiato" ,
+                                                      "Jakob Müller" ,
+                                                      "Luca Roffia" ;
                                       vann:preferredNamespacePrefix "modv" ;
                                       vann:preferredNamespaceUri : ;
                                       rdfs:comment """An ontology about the Modbus protocol implemented using TCP/IP over Ethernet. Modbus is an application layer messaging protocol for client/server communication ( positioned at level 7 of the OSI model ) between devices connected on different types of buses or networks.
 It is considered as a serial de facto standard for indrustry since 1979 allowing an easy communication within all types of network architectures."""@en ;
                                       rdfs:label "Modbus Ontology"@en .
-
-_:genid1 rdf:type schema:Person ;
-          schema:name "Jakob Müller" .
 
 #################################################################
 #    Annotation properties
@@ -539,15 +539,12 @@ xsd:string rdf:type owl:Class .
                                                     rdfs:label "Write Single HoldingRegister"@en .
 
 
-_:genid1 rdf:type schema:Person ;
-         schema:name "Jakob Müller" .
-
 #################################################################
 #    Annotations
 #################################################################
 
 :encodingOption rdfs:label "Byte Encoding"@en ;
-                 rdfs:comment "Little Endian or Big Endian encoding of bytes, i.e. the bit order within each register. Default is Big Endian"@en .
+                rdfs:comment "Little Endian or Big Endian encoding of bytes, i.e. the bit order within each register. Default is Big Endian"@en .
 
 
 :firstDWordLow rdfs:comment "Data encoding for 64-bit values; same as firstWordLow but based on DWORDS (i.e. 2 registers) instead of WORDS (1 register)"@en ;
