@@ -16,7 +16,8 @@
                                       dct:contributor _:genid1 ;
                                       vann:preferredNamespacePrefix "modv" ;
                                       vann:preferredNamespaceUri : ;
-                                      rdfs:comment "Vocabulary to represent Modbus messages in RDF."@en ;
+                                      rdfs:comment """An ontology about the Modbus protocol implemented using TCP/IP over Ethernet. Modbus is an application layer messaging protocol for client/server communication ( positioned at level 7 of the OSI model ) between devices connected on different types of buses or networks.
+It is considered as a serial de facto standard for indrustry since 1979 allowing an easy communication within all types of network architectures."""@en ;
                                       rdfs:label "Modbus Ontology"@en .
 
 _:genid1 rdf:type schema:Person ;
@@ -570,8 +571,8 @@ _:genid1 rdf:type schema:Person ;
          rdfs:label "Request Options"@en .
 
 
-:pollingTime rdfs:comment "The Modbus specification does not define a maximum or minimum allowed polling rate, however specific implementations might introduce such limits. Defined as integer of milliseconds." ;
-             rdfs:label "Modbus TCP maximum polling rate"@en ;
+:pollingTime rdfs:label "Modbus TCP maximum polling rate"@en ;
+             rdfs:comment "The Modbus specification does not define a maximum or minimum allowed polling rate, however specific implementations might introduce such limits. Defined as integer of milliseconds." ;
              om:usesUnit om:milliseconds .
 
 
