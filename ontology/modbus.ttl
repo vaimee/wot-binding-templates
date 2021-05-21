@@ -225,10 +225,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
 #    Classes
 #################################################################
 
-###  http://schema.org/Person
-schema:Person rdf:type owl:Class .
-
-
 ###  http://www.w3.org/2001/XMLSchema#string
 xsd:string rdf:type owl:Class .
 
@@ -538,8 +534,7 @@ xsd:string rdf:type owl:Class .
                                                     rdfs:label "Write Single HoldingRegister"@en .
 
 
-[ rdf:type schema:Person ;
-  schema:name "Jakob Müller"
+[ schema:name "Jakob Müller"
 ] .
 
 #################################################################
