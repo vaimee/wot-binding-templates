@@ -56,6 +56,7 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 ###  https://www.w3.org/2019/wot/modbus#writeValue
 :writeValue rdf:type owl:AnnotationProperty ;
+            rdfs:range xsd:integer ;
             rdfs:domain :RequestOption .
 
 
@@ -70,11 +71,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
 #################################################################
 #    Object Properties
 #################################################################
-
-###  https://www.w3.org/2019/wot/modbus#encodingOption
-:encodingOption rdf:type owl:ObjectProperty ;
-                rdfs:domain :Request .
-
 
 ###  https://www.w3.org/2019/wot/modbus#entity
 :entity rdf:type owl:ObjectProperty ;
@@ -212,8 +208,7 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 
 ###  https://www.w3.org/2019/wot/modbus#writeValue
-:writeValue rdf:type owl:DatatypeProperty ;
-            rdfs:range xsd:integer .
+:writeValue rdf:type owl:DatatypeProperty .
 
 
 ###  https://www.w3.org/2019/wot/modbus#zeroBasedAddressing
@@ -227,10 +222,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 ###  http://schema.org/Person
 schema:Person rdf:type owl:Class .
-
-
-###  http://www.w3.org/2001/XMLSchema#string
-xsd:string rdf:type owl:Class .
 
 
 ###  https://www.w3.org/2019/wot/modbus#Code
@@ -357,8 +348,7 @@ xsd:string rdf:type owl:Class .
 
 
 ###  https://www.w3.org/2019/wot/modbus#encodingOption
-:encodingOption rdf:type owl:NamedIndividual ,
-                         xsd:string .
+:encodingOption rdf:type owl:NamedIndividual .
 
 
 ###  https://www.w3.org/2019/wot/modbus#readCoil
@@ -545,20 +535,16 @@ _:genid1 rdf:type schema:Person ;
 #    Annotations
 #################################################################
 
-:encodingOption rdfs:label "Byte Encoding"@en ;
-                 rdfs:comment "Little Endian or Big Endian encoding of bytes, i.e. the bit order within each register. Default is Big Endian"@en .
-
-
 :firstDWordLow rdfs:comment "Data encoding for 64-bit values; same as firstWordLow but based on DWORDS (i.e. 2 registers) instead of WORDS (1 register)"@en ;
-               rdfs:label "First DoubleWord Low Flag"@en .
+                rdfs:label "First DoubleWord Low Flag"@en .
 
 
 :firstWordLow rdfs:label "First Word Low Flag"@en ;
               rdfs:comment "Data encoding for 32-bit values to chose which of the register is the low value"@en .
 
 
-:length rdfs:comment "Specifies the amount of either registers or coils to be read/written"@en ;
-        rdfs:label "Length of requested registers/coils"@en .
+:length rdfs:label "Length of requested registers/coils"@en ;
+        rdfs:comment "Specifies the amount of either registers or coils to be read/written"@en .
 
 
 :offset rdfs:label "Offset"@en ;
