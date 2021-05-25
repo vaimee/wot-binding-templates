@@ -539,13 +539,6 @@ xsd:string rdf:type owl:Class .
                                                     rdfs:comment "Write Single HoldingRegister (internal bits). Address range 40001-49999"@en ;
                                                     rdfs:label "Write Single HoldingRegister"@en .
 
-
-<<<<<<< HEAD
-=======
-[ schema:name "Jakob Müller"
-] .
-
->>>>>>> branch 'Ontology_Annotation' of https://github.com/vaimee/wot-binding-templates
 #################################################################
 #    Annotations
 #################################################################
