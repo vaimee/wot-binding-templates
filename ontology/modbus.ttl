@@ -12,27 +12,20 @@
 @base <https://www.w3.org/2019/wot/modbus> .
 
 <https://www.w3.org/2019/wot/modbus> rdf:type owl:Ontology ;
-<<<<<<< HEAD
-                                      dct:author "Jakob Müller" ;
-                                      dct:contributor "Cristiano Aguzzi" ,
-                                                      "Elisa Riforgiato" ,
-                                                      "Jakob Müller" ,
-                                                      "Luca Roffia" ;
-=======
-                                      dct:author "https://github.com/Drukob"@en ;
-                                      dct:contributor "https://github.com/Drukob" ,
-                                                      "https://github.com/elithkob" ,
-                                                      "https://github.com/lroffia" ,
-                                                      "https://github.com/relu91" ;
->>>>>>> branch 'Ontology_Annotation' of https://github.com/vaimee/wot-binding-templates
+
+                                      dct:author "Jakob Müller" "https://github.com/Drukob"@en ;
+                                      dct:contributor "Cristiano Aguzzi" "https://github.com/Drukob" ,
+                                                      "Elisa Riforgiato" "https://github.com/elithkob"  ,
+                                                      "Jakob Müller"  "https://github.com/lroffia" ,
+                                                      "Luca Roffia"  "https://github.com/relu91" ;
+
+
                                       vann:preferredNamespacePrefix "modv" ;
                                       vann:preferredNamespaceUri : ;
-<<<<<<< HEAD
+
                                       rdfs:comment """An ontology about the Modbus protocol implemented using TCP/IP over Ethernet. Modbus is an application layer messaging protocol for client/server communication ( positioned at level 7 of the OSI model ) between devices connected on different types of buses or networks.
 It is considered as a serial de facto standard for indrustry since 1979 allowing an easy communication within all types of network architectures."""@en ;
-=======
-                                      rdfs:comment "Vocabulary to represent Modbus protocol in OWL"@en ;
->>>>>>> branch 'Ontology_Annotation' of https://github.com/vaimee/wot-binding-templates
+
                                       rdfs:label "Modbus Ontology"@en .
 
 #################################################################
