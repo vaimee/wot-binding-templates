@@ -13,11 +13,11 @@
 
 <https://www.w3.org/2019/wot/modbus> rdf:type owl:Ontology ;
 
-                                      dct:author "Jakob Müller" "https://github.com/Drukob"@en ;
-                                      dct:contributor "Cristiano Aguzzi" "https://github.com/Drukob" ,
-                                                      "Elisa Riforgiato" "https://github.com/elithkob"  ,
-                                                      "Jakob Müller"  "https://github.com/lroffia" ,
-                                                      "Luca Roffia"  "https://github.com/relu91" ;
+                                      dct:author "Jakob Müller https://github.com/Drukob" ;
+                                      dct:contributor "Cristiano Aguzzi https://github.com/Drukob" ,
+                                                      "Elisa Riforgiato https://github.com/elithkob"  ,
+                                                      "Jakob Müller https://github.com/lroffia" ,
+                                                      "Luca Roffia https://github.com/relu91" ;
 
 
                                       vann:preferredNamespacePrefix "modv" ;
