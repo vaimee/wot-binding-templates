@@ -305,7 +305,7 @@ xsd:string rdf:type owl:Class .
 ###  https://www.w3.org/2019/wot/modbus#Response
 :Response rdf:type owl:Class ;
           rdfs:subClassOf :Message ;
-          rdfs:comment "Response"@en ;
+          rdfs:comment "A Response message is sent by a server device to client device in return to a client's query."@en ;
           rdfs:label "Response"@en .
 
 
