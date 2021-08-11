@@ -235,7 +235,8 @@ xsd:string rdf:type owl:Class .
 
 ###  https://www.w3.org/2019/wot/modbus#Code
 :Code rdf:type owl:Class ;
-      rdfs:comment "Code"@en .
+      rdfs:comment "Code"@en ;
+      rdfs:label "Code" .
 
 
 ###  https://www.w3.org/2019/wot/modbus#Entity
@@ -289,7 +290,7 @@ xsd:string rdf:type owl:Class .
 
 ###  https://www.w3.org/2019/wot/modbus#Message
 :Message rdf:type owl:Class ;
-         rdfs:comment "A Modbus Message"@en ;
+         rdfs:comment "A Modbus Message class represents the comunication between client and server"@en ;
          rdfs:isDefinedBy <https://www.w3.org/2019/wot/modbus> ;
          rdfs:label "A Modbus Message"@en .
 
