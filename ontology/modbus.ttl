@@ -298,7 +298,7 @@ xsd:string rdf:type owl:Class .
 ###  https://www.w3.org/2019/wot/modbus#Request
 :Request rdf:type owl:Class ;
          rdfs:subClassOf :Message ;
-         rdfs:comment "Request"@en ;
+         rdfs:comment "A Request message is sent by a client device to a server device. The comunication client/server stats only with a request sent by the client."@en ;
          rdfs:label "Request"@en .
 
 
