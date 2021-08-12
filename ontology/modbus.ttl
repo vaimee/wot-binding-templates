@@ -172,6 +172,13 @@ binding:assignment rdf:type owl:AnnotationProperty .
 #    Data properties
 #################################################################
 
+###  https://www.w3.org/2019/wot/modbus#byteEncoding
+:byteEncoding rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Request ;
+              rdfs:range xsd:byte ;
+              rdfs:comment "Little Endian or Big Endian encoding of bytes, i.e. the bit order within each register. Default is Big Endian." .
+
+
 ###  https://www.w3.org/2019/wot/modbus#firstDWordLow
 :firstDWordLow rdf:type owl:DatatypeProperty ;
                rdfs:domain :Request ;
