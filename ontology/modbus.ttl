@@ -220,7 +220,9 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 
 ###  https://www.w3.org/2019/wot/modbus#writeValue
-:writeValue rdf:type owl:DatatypeProperty .
+:writeValue rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Request ;
+            rdfs:range xsd:integer .
 
 
 ###  https://www.w3.org/2019/wot/modbus#zeroBasedAddressing
@@ -565,8 +567,8 @@ _:genid1 rdf:type schema:Person ;
               rdfs:label "firstWordLowFlag"@en .
 
 
-:length rdfs:comment "Specifies the amount of either registers or coils to be read/written"@en ;
-        rdfs:label "lenght"@en .
+:length rdfs:label "length"@en ;
+        rdfs:comment "Specifies the amount of either registers or coils to be read/written"@en .
 
 
 :offset rdfs:label "offset"@en ;
