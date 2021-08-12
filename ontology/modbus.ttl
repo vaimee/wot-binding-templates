@@ -86,7 +86,7 @@ binding:assignment rdf:type owl:AnnotationProperty .
           rdfs:domain :Request ;
           rdfs:range :FunctionCode ,
                      :FunctionName ;
-          rdfs:comment "Function Code sent by the master in every request. Specifying the desired interaction."@en ;
+          rdfs:comment "A relationship to associate a Function Code sent by the client in every request. The same code is used in a normal response sent by the server."@en ;
           rdfs:isDefinedBy <https://www.w3.org/2019/wot/modbus> ;
           rdfs:label "has_function"@en .
 
