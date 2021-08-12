@@ -180,16 +180,19 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 ###  https://www.w3.org/2019/wot/modbus#firstWordLow
 :firstWordLow rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Request ;
               rdfs:range xsd:boolean .
 
 
 ###  https://www.w3.org/2019/wot/modbus#length
 :length rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Request ;
         rdfs:range xsd:integer .
 
 
 ###  https://www.w3.org/2019/wot/modbus#offset
 :offset rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Request ;
         rdfs:range xsd:integer .
 
 
@@ -200,16 +203,19 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 ###  https://www.w3.org/2019/wot/modbus#pollingTime
 :pollingTime rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Request ;
              rdfs:range xsd:integer .
 
 
 ###  https://www.w3.org/2019/wot/modbus#timeout
 :timeout rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Request ;
          rdfs:range xsd:integer .
 
 
 ###  https://www.w3.org/2019/wot/modbus#unitID
 :unitID rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Request ;
         rdfs:range xsd:integer .
 
 
@@ -219,6 +225,7 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 ###  https://www.w3.org/2019/wot/modbus#zeroBasedAddressing
 :zeroBasedAddressing rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :Request ;
                      rdfs:range xsd:boolean .
 
 
