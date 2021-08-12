@@ -570,7 +570,7 @@ _:genid1 rdf:type schema:Person ;
          rdfs:label "requestOption"@en .
 
 
-:pollingTime rdfs:comment "The Modbus specification does not define a maximum or minimum allowed polling rate, however specific implementations might introduce such limits. Defined as integer of milliseconds." ;
+:pollingTime rdfs:comment "Modbus TCP maximum polling rate. The Modbus specification does not define a maximum or minimum allowed polling rate, however specific implementations might introduce such limits. Defined as integer of milliseconds." ;
              om:usesUnit om:milliseconds ;
              rdfs:label "pollingTime"@en .
 
