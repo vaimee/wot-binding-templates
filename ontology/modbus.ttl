@@ -576,7 +576,7 @@ _:genid1 rdf:type schema:Person ;
 
 
 :timeout rdfs:label "timeout"@en ;
-         rdfs:comment "Defines how much time the runtime should wait until it receives a reply from the device." ;
+         rdfs:comment "Modbus response maximum waiting time. Defines how much time the runtime should wait until it receives a reply from the device." ;
          om:usesUnit om:milliseconds .
 
 
