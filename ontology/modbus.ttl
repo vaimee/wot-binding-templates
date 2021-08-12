@@ -56,6 +56,7 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 ###  https://www.w3.org/2019/wot/modbus#writeValue
 :writeValue rdf:type owl:AnnotationProperty ;
+            rdfs:range xsd:integer ;
             rdfs:domain :RequestOption .
 
 
@@ -71,28 +72,13 @@ binding:assignment rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
-###  https://www.w3.org/2019/wot/modbus#encodingOption
-:encodingOption rdf:type owl:ObjectProperty ;
-                rdfs:domain :Request .
-
-
 ###  https://www.w3.org/2019/wot/modbus#entity
 :entity rdf:type owl:ObjectProperty ;
         rdfs:domain :Request ;
         rdfs:range :Entity ;
-        rdfs:comment "A registry type to let the runtime automatically detect the right function code"@en ;
+        rdfs:comment "A relationship that associates a request to a registry type to let the runtime automatically detect the right function code."@en ;
         rdfs:isDefinedBy <https://www.w3.org/2019/wot/modbus> ;
-        rdfs:label "Entity"@en .
-
-
-###  https://www.w3.org/2019/wot/modbus#firstDWordLow
-:firstDWordLow rdf:type owl:ObjectProperty ;
-               rdfs:domain :Request .
-
-
-###  https://www.w3.org/2019/wot/modbus#firstWordLow
-:firstWordLow rdf:type owl:ObjectProperty ;
-              rdfs:domain :Request .
+        rdfs:label "has_entity"@en .
 
 
 ###  https://www.w3.org/2019/wot/modbus#function
@@ -102,41 +88,12 @@ binding:assignment rdf:type owl:AnnotationProperty .
                      :FunctionName ;
           rdfs:comment "Function Code sent by the master in every request. Specifying the desired interaction."@en ;
           rdfs:isDefinedBy <https://www.w3.org/2019/wot/modbus> ;
-          rdfs:label "Function"@en .
-
-
-###  https://www.w3.org/2019/wot/modbus#functionCode
-:functionCode rdf:type owl:ObjectProperty ;
-              rdfs:domain :FunctionName ;
-              rdfs:range :FunctionCode ;
-              rdfs:label "Function code of a function Name"@en .
-
-
-###  https://www.w3.org/2019/wot/modbus#functionName
-:functionName rdf:type owl:ObjectProperty ;
-              rdfs:domain :FunctionCode ;
-              rdfs:range :FunctionName ;
-              rdfs:label "Function name of a function Code"@en .
-
-
-###  https://www.w3.org/2019/wot/modbus#length
-:length rdf:type owl:ObjectProperty ;
-        rdfs:domain :Request .
-
-
-###  https://www.w3.org/2019/wot/modbus#offset
-:offset rdf:type owl:ObjectProperty ;
-        rdfs:domain :Request .
+          rdfs:label "has_function"@en .
 
 
 ###  https://www.w3.org/2019/wot/modbus#options
 :options rdf:type owl:ObjectProperty ;
          rdfs:domain :Request .
-
-
-###  https://www.w3.org/2019/wot/modbus#pollingTime
-:pollingTime rdf:type owl:ObjectProperty ;
-             rdfs:domain :Request .
 
 
 ###  https://www.w3.org/2019/wot/modbus#responseCode
@@ -146,25 +103,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
               rdfs:comment "Response Code returned by the slave after a request"@en ;
               rdfs:isDefinedBy <https://www.w3.org/2019/wot/modbus> ;
               rdfs:label "Response Code"@en .
-
-
-###  https://www.w3.org/2019/wot/modbus#timeout
-:timeout rdf:type owl:ObjectProperty ;
-         rdfs:domain :Request .
-
-
-###  https://www.w3.org/2019/wot/modbus#unitID
-:unitID rdf:type owl:ObjectProperty ;
-        rdfs:domain :Request .
-
-
-###  https://www.w3.org/2019/wot/modbus#writeValue
-:writeValue rdf:type owl:ObjectProperty .
-
-
-###  https://www.w3.org/2019/wot/modbus#zeroBasedAddressing
-:zeroBasedAddressing rdf:type owl:ObjectProperty ;
-                     rdfs:domain :Request .
 
 
 #################################################################
@@ -212,8 +150,7 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 
 ###  https://www.w3.org/2019/wot/modbus#writeValue
-:writeValue rdf:type owl:DatatypeProperty ;
-            rdfs:range xsd:integer .
+:writeValue rdf:type owl:DatatypeProperty .
 
 
 ###  https://www.w3.org/2019/wot/modbus#zeroBasedAddressing
@@ -364,7 +301,6 @@ xsd:string rdf:type owl:Class .
 ###  https://www.w3.org/2019/wot/modbus#readCoil
 :readCoil rdf:type owl:NamedIndividual ,
                    :FunctionName ;
-          :functionCode <https://www.w3.org/2019/wot/modbus/functionCode#1> ;
           rdfs:comment "Read a single coil (i.e. boolean/bit access) value. Usually in the address range 00001-09999"@en ;
           rdfs:label "Read Single Coils"@en .
 
@@ -372,7 +308,6 @@ xsd:string rdf:type owl:Class .
 ###  https://www.w3.org/2019/wot/modbus#readDiscreteInput
 :readDiscreteInput rdf:type owl:NamedIndividual ,
                             :FunctionName ;
-                   :functionCode <https://www.w3.org/2019/wot/modbus/functionCode#2> ;
                    rdfs:comment "Read Physical Discrete Inputs (bit access). Address range 10001-19999"@en ;
                    rdfs:label "Read Discrete Inputs"@en .
 
@@ -380,7 +315,6 @@ xsd:string rdf:type owl:Class .
 ###  https://www.w3.org/2019/wot/modbus#readHoldingRegisters
 :readHoldingRegisters rdf:type owl:NamedIndividual ,
                                :FunctionName ;
-                      :functionCode <https://www.w3.org/2019/wot/modbus/functionCode#3> ;
                       rdfs:comment "Read Multiple Holding Registers (16 bit access). Address range 40001-49999"@en ;
                       rdfs:label "Read Multiple Holding Registers"@en .
 
@@ -388,7 +322,6 @@ xsd:string rdf:type owl:Class .
 ###  https://www.w3.org/2019/wot/modbus#readInputRegisters
 :readInputRegisters rdf:type owl:NamedIndividual ,
                              :FunctionName ;
-                    :functionCode <https://www.w3.org/2019/wot/modbus/functionCode#4> ;
                     rdfs:comment "Read Multiple Physical Input Registers (16 bits). Address range 30001-39999"@en ;
                     rdfs:label "Read Multiple Input Registers"@en .
 
@@ -396,7 +329,6 @@ xsd:string rdf:type owl:Class .
 ###  https://www.w3.org/2019/wot/modbus#writeMultipleCoils
 :writeMultipleCoils rdf:type owl:NamedIndividual ,
                              :FunctionName ;
-                    :functionCode <https://www.w3.org/2019/wot/modbus/functionCode#15> ;
                     rdfs:comment "Write Multiple Physical Coils (internal bits). Address range 00001-09999"@en ;
                     rdfs:label "Write Multiple Coils"@en .
 
@@ -404,7 +336,6 @@ xsd:string rdf:type owl:Class .
 ###  https://www.w3.org/2019/wot/modbus#writeMultipleHoldingRegisters
 :writeMultipleHoldingRegisters rdf:type owl:NamedIndividual ,
                                         :FunctionName ;
-                               :functionCode <https://www.w3.org/2019/wot/modbus/functionCode#16> ;
                                rdfs:comment "Write Multiple Holding Registers (output registers, 16 bit). Address range 40001-49999"@en ;
                                rdfs:label "Write Multiple Holding Registers"@en .
 
@@ -412,7 +343,6 @@ xsd:string rdf:type owl:Class .
 ###  https://www.w3.org/2019/wot/modbus#writeSingleCoil
 :writeSingleCoil rdf:type owl:NamedIndividual ,
                           :FunctionName ;
-                 :functionCode <https://www.w3.org/2019/wot/modbus/functionCode#5> ;
                  rdfs:comment "Write Single Physical Coil (internal bit). Address range 00001-09999"@en ;
                  rdfs:label "Write Single Coil"@en .
 
@@ -420,7 +350,6 @@ xsd:string rdf:type owl:Class .
 ###  https://www.w3.org/2019/wot/modbus#writeSingleHoldingRegister
 :writeSingleHoldingRegister rdf:type owl:NamedIndividual ,
                                      :FunctionName ;
-                            :functionCode <https://www.w3.org/2019/wot/modbus/functionCode#6> ;
                             rdfs:comment "Write Single HoldingRegister (internal bits). Address range 40001-49999"@en ;
                             rdfs:label "Write Single HoldingRegister"@en .
 
@@ -470,7 +399,6 @@ xsd:string rdf:type owl:Class .
 ###  https://www.w3.org/2019/wot/modbus/functionCode#1
 <https://www.w3.org/2019/wot/modbus/functionCode#1> rdf:type owl:NamedIndividual ,
                                                              :FunctionCode ;
-                                                    :functionName :readCoil ;
                                                     rdfs:comment "Read a single coil (i.e. boolean/bit access) value. Usually in the address range 00001-09999"@en ;
                                                     rdfs:label "Read Single Coils"@en .
 
@@ -478,7 +406,6 @@ xsd:string rdf:type owl:Class .
 ###  https://www.w3.org/2019/wot/modbus/functionCode#15
 <https://www.w3.org/2019/wot/modbus/functionCode#15> rdf:type owl:NamedIndividual ,
                                                               :FunctionCode ;
-                                                     :functionName :writeMultipleCoils ;
                                                      rdfs:comment "Write Multiple Physical Coils (internal bits). Address range 00001-09999"@en ;
                                                      rdfs:label "Write Multiple Coils"@en .
 
@@ -486,7 +413,6 @@ xsd:string rdf:type owl:Class .
 ###  https://www.w3.org/2019/wot/modbus/functionCode#16
 <https://www.w3.org/2019/wot/modbus/functionCode#16> rdf:type owl:NamedIndividual ,
                                                               :FunctionCode ;
-                                                     :functionName :writeMultipleHoldingRegisters ;
                                                      rdfs:comment "Write Multiple Holding Registers (output registers, 16 bit). Address range 40001-49999"@en ;
                                                      rdfs:label "Write Multiple Holding Registers"@en .
 
@@ -494,7 +420,6 @@ xsd:string rdf:type owl:Class .
 ###  https://www.w3.org/2019/wot/modbus/functionCode#2
 <https://www.w3.org/2019/wot/modbus/functionCode#2> rdf:type owl:NamedIndividual ,
                                                              :FunctionCode ;
-                                                    :functionName :readDiscreteInput ;
                                                     rdfs:comment "Read Physical Discrete Inputs (bit access). Address range 10001-19999"@en ;
                                                     rdfs:label "Read Discrete Inputs"@en .
 
@@ -502,7 +427,6 @@ xsd:string rdf:type owl:Class .
 ###  https://www.w3.org/2019/wot/modbus/functionCode#3
 <https://www.w3.org/2019/wot/modbus/functionCode#3> rdf:type owl:NamedIndividual ,
                                                              :FunctionCode ;
-                                                    :functionName :readHoldingRegisters ;
                                                     rdfs:comment "Read Multiple Holding Registers (16 bit access). Address range 40001-49999"@en ;
                                                     rdfs:label "Read Multiple Holding Registers"@en .
 
@@ -510,7 +434,6 @@ xsd:string rdf:type owl:Class .
 ###  https://www.w3.org/2019/wot/modbus/functionCode#4
 <https://www.w3.org/2019/wot/modbus/functionCode#4> rdf:type owl:NamedIndividual ,
                                                              :FunctionCode ;
-                                                    :functionName :readInputRegisters ;
                                                     rdfs:comment "Read Multiple Physica Input Registers (16 bits). Address range 30001-39999"@en ;
                                                     rdfs:label "Read Multiple Input Registers"@en .
 
@@ -525,7 +448,6 @@ xsd:string rdf:type owl:Class .
 ###  https://www.w3.org/2019/wot/modbus/functionCode#5
 <https://www.w3.org/2019/wot/modbus/functionCode#5> rdf:type owl:NamedIndividual ,
                                                              :FunctionCode ;
-                                                    :functionName :writeSingleCoil ;
                                                     rdfs:comment "Write Single Physical Coil (internal bit). Address range 00001-09999"@en ;
                                                     rdfs:label "Write Single Coil"@en .
 
@@ -533,7 +455,6 @@ xsd:string rdf:type owl:Class .
 ###  https://www.w3.org/2019/wot/modbus/functionCode#6
 <https://www.w3.org/2019/wot/modbus/functionCode#6> rdf:type owl:NamedIndividual ,
                                                              :FunctionCode ;
-                                                    :functionName :writeSingleHoldingRegister ;
                                                     rdfs:comment "Write Single HoldingRegister (internal bits). Address range 40001-49999"@en ;
                                                     rdfs:label "Write Single HoldingRegister"@en .
 
@@ -545,51 +466,8 @@ _:genid1 rdf:type schema:Person ;
 #    Annotations
 #################################################################
 
-:encodingOption rdfs:label "Byte Encoding"@en ;
-                 rdfs:comment "Little Endian or Big Endian encoding of bytes, i.e. the bit order within each register. Default is Big Endian"@en .
-
-
-:firstDWordLow rdfs:comment "Data encoding for 64-bit values; same as firstWordLow but based on DWORDS (i.e. 2 registers) instead of WORDS (1 register)"@en ;
-               rdfs:label "First DoubleWord Low Flag"@en .
-
-
-:firstWordLow rdfs:label "First Word Low Flag"@en ;
-              rdfs:comment "Data encoding for 32-bit values to chose which of the register is the low value"@en .
-
-
-:length rdfs:comment "Specifies the amount of either registers or coils to be read/written"@en ;
-        rdfs:label "Length of requested registers/coils"@en .
-
-
-:offset rdfs:label "Offset"@en ;
-        rdfs:comment "Specifies the starting address of the modbus operations"@en ;
-        binding:assignment binding:required .
-
-
 :options rdfs:comment "Request Options"@en ;
-         rdfs:label "Request Options"@en .
+          rdfs:label "Request Options"@en .
 
 
-:pollingTime rdfs:comment "The Modbus specification does not define a maximum or minimum allowed polling rate, however specific implementations might introduce such limits. Defined as integer of milliseconds." ;
-             rdfs:label "Modbus TCP maximum polling rate"@en ;
-             om:usesUnit om:milliseconds .
-
-
-:timeout rdfs:label "Modbus response maximum waiting time"@en ;
-         rdfs:comment "Defines how much time the runtime should wait until it receives a reply from the device." ;
-         om:usesUnit om:milliseconds .
-
-
-:unitID rdfs:label "UnitID"@en ;
-        rdfs:comment "The Unit ID is usually not needed for ModbusTCP, since the IP-address works as unique identifier, but for compability reasons still often included" .
-
-
-:writeValue rdfs:label "Write Value"@en ;
-            rdfs:comment "The value to write to the register or coil, encoded as integer, omitted and ignored for reading operations"@en .
-
-
-:zeroBasedAddressing rdfs:label "Zero Based Addressing Flag"@en ;
-                     rdfs:comment "Modbus implementations can differ in the way addressing works, as the first coil/register can be either referred to as '0' or '1'. Default is '0'."@en .
-
-
-###  Generated by the OWL API (version 4.5.7.2018-12-02T02:23:35Z) https://github.com/owlcs/owlapi
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
