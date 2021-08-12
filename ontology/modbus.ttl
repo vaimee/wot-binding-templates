@@ -235,7 +235,7 @@ xsd:string rdf:type owl:Class .
 
 ###  https://www.w3.org/2019/wot/modbus#Code
 :Code rdf:type owl:Class ;
-      rdfs:comment "Code"@en ;
+      rdfs:comment "In a Modbus Message the content of a requested operation (sent by client to server) or of a response (elaborated by the server and sent to client) is expressed with a specific code, that could be a normal one ( function code) or an exception one (exception code)."@en ;
       rdfs:label "Code" .
 
 
