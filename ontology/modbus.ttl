@@ -595,7 +595,7 @@ _:genid1 rdf:type schema:Person ;
 
 
 :writeValue rdfs:comment "The value to write to the register or coil, encoded as integer, omitted and ignored for reading operations"@en ;
-            rdfs:label "writevalue"@en .
+            rdfs:label "writeValue"@en .
 
 
 :zeroBasedAddressing rdfs:label "zeroBasedAddressingFlag"@en ;
