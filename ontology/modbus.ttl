@@ -160,7 +160,8 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 
 ###  https://www.w3.org/2019/wot/modbus#writeValue
-:writeValue rdf:type owl:ObjectProperty .
+:writeValue rdf:type owl:ObjectProperty ;
+            rdfs:domain :Request .
 
 
 ###  https://www.w3.org/2019/wot/modbus#zeroBasedAddressing
@@ -205,6 +206,7 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 ###  https://www.w3.org/2019/wot/modbus#options
 :options rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Request ;
          rdfs:range :RequestOption .
 
 
@@ -578,13 +580,13 @@ _:genid1 rdf:type schema:Person ;
         rdfs:comment "Specifies the amount of either registers or coils to be read/written"@en .
 
 
-:offset rdfs:label "offset"@en ;
-        rdfs:comment "Specifies the starting address of the modbus operations"@en ;
+:offset rdfs:comment "Specifies the starting address of the modbus operations"@en ;
+        rdfs:label "offset"@en ;
         binding:assignment binding:required .
 
 
-:options rdfs:comment "Request Options"@en ;
-         rdfs:label "requestOption"@en .
+:options rdfs:label "requestOption"@en ;
+         rdfs:comment "Request Options"@en .
 
 
 :pollingTime rdfs:comment "Modbus TCP maximum polling rate. The Modbus specification does not define a maximum or minimum allowed polling rate, however specific implementations might introduce such limits. Defined as integer of milliseconds." ;
