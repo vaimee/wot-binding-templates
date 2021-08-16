@@ -180,6 +180,14 @@ binding:assignment rdf:type owl:AnnotationProperty .
               rdfs:comment "Little Endian or Big Endian encoding of bytes, i.e. the bit order within each register. Default is Big Endian." .
 
 
+###  https://www.w3.org/2019/wot/modbus#codeNumber
+:codeNumber rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Code ;
+            rdfs:range xsd:integer ;
+            rdfs:comment "A Modbus function/exception code number"@en ;
+            rdfs:label "codeNumber"@en .
+
+
 ###  https://www.w3.org/2019/wot/modbus#firstDWordLow
 :firstDWordLow rdf:type owl:DatatypeProperty ;
                rdfs:range xsd:boolean .
