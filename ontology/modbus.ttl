@@ -54,6 +54,19 @@ om:usesUnit rdf:type owl:AnnotationProperty .
 binding:assignment rdf:type owl:AnnotationProperty .
 
 
+###  https://www.w3.org/2019/wot/modbus#writeValue
+:writeValue rdf:type owl:AnnotationProperty ;
+            rdfs:domain :RequestOption .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  https://www.w3.org/2019/wot/modbus#RequestOption
+:RequestOption rdf:type rdfs:Datatype .
+
+
 #################################################################
 #    Object Properties
 #################################################################
@@ -146,8 +159,7 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 
 ###  https://www.w3.org/2019/wot/modbus#writeValue
-:writeValue rdf:type owl:ObjectProperty ;
-            rdfs:domain :RequestOption .
+:writeValue rdf:type owl:ObjectProperty .
 
 
 ###  https://www.w3.org/2019/wot/modbus#zeroBasedAddressing
@@ -213,10 +225,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
 #    Classes
 #################################################################
 
-###  http://schema.org/Enumeration
-schema:Enumeration rdf:type owl:Class .
-
-
 ###  http://schema.org/Person
 schema:Person rdf:type owl:Class .
 
@@ -232,22 +240,49 @@ xsd:string rdf:type owl:Class .
 
 ###  https://www.w3.org/2019/wot/modbus#Entity
 :Entity rdf:type owl:Class ;
-        rdfs:subClassOf schema:Enumeration ;
+        owl:equivalentClass [ rdf:type owl:Class ;
+                              owl:oneOf ( :Coil
+                                          :DiscreteInput
+                                          :HoldingRegister
+                                          :InputRegister
+                                        )
+                            ] ;
         rdfs:comment "A Modbus registry type"@en ;
         rdfs:label "Entity"@en .
 
 
 ###  https://www.w3.org/2019/wot/modbus#FunctionCode
 :FunctionCode rdf:type owl:Class ;
-              rdfs:subClassOf schema:Enumeration ,
-                              :Code ;
+              owl:equivalentClass [ rdf:type owl:Class ;
+                                    owl:oneOf ( <https://www.w3.org/2019/wot/modbus/functionCode#1>
+                                                <https://www.w3.org/2019/wot/modbus/functionCode#15>
+                                                <https://www.w3.org/2019/wot/modbus/functionCode#16>
+                                                <https://www.w3.org/2019/wot/modbus/functionCode#2>
+                                                <https://www.w3.org/2019/wot/modbus/functionCode#3>
+                                                <https://www.w3.org/2019/wot/modbus/functionCode#4>
+                                                <https://www.w3.org/2019/wot/modbus/functionCode#43>
+                                                <https://www.w3.org/2019/wot/modbus/functionCode#5>
+                                                <https://www.w3.org/2019/wot/modbus/functionCode#6>
+                                              )
+                                  ] ;
+              rdfs:subClassOf :Code ;
               rdfs:comment "Function Code"@en ;
               rdfs:label "Function Code"@en .
 
 
 ###  https://www.w3.org/2019/wot/modbus#FunctionName
 :FunctionName rdf:type owl:Class ;
-              rdfs:subClassOf schema:Enumeration ;
+              owl:equivalentClass [ rdf:type owl:Class ;
+                                    owl:oneOf ( :readCoil
+                                                :readDiscreteInput
+                                                :readHoldingRegisters
+                                                :readInputRegisters
+                                                :writeMultipleCoils
+                                                :writeMultipleHoldingRegisters
+                                                :writeSingleCoil
+                                                :writeSingleHoldingRegister
+                                              )
+                                  ] ;
               rdfs:comment "A Modbus human readable function name"@en ;
               rdfs:label "Function Name"@en .
 
@@ -275,8 +310,16 @@ xsd:string rdf:type owl:Class .
 
 ###  https://www.w3.org/2019/wot/modbus#ResponseCode
 :ResponseCode rdf:type owl:Class ;
-              rdfs:subClassOf schema:Enumeration ,
-                              :Code ;
+              owl:equivalentClass [ rdf:type owl:Class ;
+                                    owl:oneOf ( <https://www.w3.org/2019/wot/modbus/errorCode#01>
+                                                <https://www.w3.org/2019/wot/modbus/errorCode#02>
+                                                <https://www.w3.org/2019/wot/modbus/errorCode#03>
+                                                <https://www.w3.org/2019/wot/modbus/errorCode#04>
+                                                <https://www.w3.org/2019/wot/modbus/errorCode#05>
+                                                <https://www.w3.org/2019/wot/modbus/errorCode#06>
+                                              )
+                                  ] ;
+              rdfs:subClassOf :Code ;
               rdfs:comment "Response Code"@en ;
               rdfs:label "Response Code"@en .
 
@@ -518,8 +561,8 @@ _:genid1 rdf:type schema:Person ;
         rdfs:label "Length of requested registers/coils"@en .
 
 
-:offset rdfs:comment "Specifies the starting address of the modbus operations"@en ;
-        rdfs:label "Offset"@en ;
+:offset rdfs:label "Offset"@en ;
+        rdfs:comment "Specifies the starting address of the modbus operations"@en ;
         binding:assignment binding:required .
 
 
@@ -527,8 +570,8 @@ _:genid1 rdf:type schema:Person ;
          rdfs:label "Request Options"@en .
 
 
-:pollingTime rdfs:label "Modbus TCP maximum polling rate"@en ;
-             rdfs:comment "The Modbus specification does not define a maximum or minimum allowed polling rate, however specific implementations might introduce such limits. Defined as integer of milliseconds." ;
+:pollingTime rdfs:comment "The Modbus specification does not define a maximum or minimum allowed polling rate, however specific implementations might introduce such limits. Defined as integer of milliseconds." ;
+             rdfs:label "Modbus TCP maximum polling rate"@en ;
              om:usesUnit om:milliseconds .
 
 
