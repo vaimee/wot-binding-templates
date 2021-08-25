@@ -7,11 +7,25 @@ const tpl = fs.readFileSync('ontology/templates.rq', 'utf-8');
 sttl.register(tpl);
 sttl.connect(q => {
     return urdf.query(q)
-    .then(b => ({
-        results: {
-            bindings: b
-        }
-    }));
+        .then(b => {
+            const bindings = b.reduce((accumulator, value) => {
+                // Flat bindings that have list variables
+                // Note: this method only works for one list variable per binding
+                const found = Object.keys(value).find(k => value[k].type === "list")
+                if (found) {
+                    value[found].value.forEach(listElement => {
+                        const newBinding = Object.assign({}, value)
+                        newBinding[found] = listElement
+                        accumulator.push(newBinding);
+                    });
+                } else {
+                    accumulator.push(value)
+                }
+                return accumulator
+            }, []);
+
+            return { results: { bindings } }
+        });
 });
 
 const ontologies = [
