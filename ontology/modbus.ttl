@@ -193,14 +193,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
              rdfs:label "hasQuantity"@en .
 
 
-###  https://www.w3.org/2019/wot/modbus#name
-:name rdf:type owl:DatatypeProperty ;
-      rdfs:domain :Code ;
-      rdfs:range xsd:string ;
-      rdfs:comment "A Modbus human readable function/exception name" ;
-      rdfs:label "name" .
-
-
 ###  https://www.w3.org/2019/wot/modbus#pollingTime
 :pollingTime rdf:type owl:DatatypeProperty ;
              rdfs:range xsd:integer .
