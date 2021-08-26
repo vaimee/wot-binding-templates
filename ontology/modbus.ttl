@@ -19,9 +19,6 @@
                                       rdfs:comment "Vocabulary to represent Modbus messages in RDF."@en ;
                                       rdfs:label "Modbus in RDF"@en .
 
-_:genid1 rdf:type schema:Person ;
-          schema:name "Jakob Müller" .
-
 #################################################################
 #    Annotation properties
 #################################################################
@@ -181,9 +178,11 @@ binding:assignment rdf:type owl:AnnotationProperty .
             rdfs:label "codeNumber"@en .
 
 
-###  https://www.w3.org/2019/wot/modbus#length
-:length rdf:type owl:DatatypeProperty ;
-        rdfs:range xsd:integer .
+###  https://www.w3.org/2019/wot/modbus#hasQuantity
+:hasQuantity rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:integer ;
+             rdfs:comment "Specifies the amount of either registers or coils to be read/written"@en ;
+             rdfs:label "hasQuantity"@en .
 
 
 ###  https://www.w3.org/2019/wot/modbus#name
@@ -536,8 +535,9 @@ xsd:string rdf:type owl:Class .
                                                     rdfs:label "Write Single HoldingRegister"@en .
 
 
-_:genid1 rdf:type schema:Person ;
-         schema:name "Jakob Müller" .
+[ rdf:type schema:Person ;
+  schema:name "Jakob Müller"
+] .
 
 #################################################################
 #    Annotations
@@ -547,12 +547,8 @@ _:genid1 rdf:type schema:Person ;
                  rdfs:comment "Little Endian or Big Endian encoding of bytes, i.e. the bit order within each register. Default is Big Endian"@en .
 
 
-:length rdfs:label "length"@en ;
-        rdfs:comment "Specifies the amount of either registers or coils to be read/written"@en .
-
-
-:offset rdfs:label "offset"@en ;
-        rdfs:comment "Specifies the starting address of the modbus operations"@en ;
+:offset rdfs:comment "Specifies the starting address of the modbus operations"@en ;
+        rdfs:label "offset"@en ;
         binding:assignment binding:required .
 
 
