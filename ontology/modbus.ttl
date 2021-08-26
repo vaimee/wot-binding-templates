@@ -173,29 +173,12 @@ binding:assignment rdf:type owl:AnnotationProperty .
 #    Data properties
 #################################################################
 
-###  https://www.w3.org/2019/wot/modbus#byteEncoding
-:byteEncoding rdf:type owl:DatatypeProperty ;
-              rdfs:domain :Request ;
-              rdfs:range xsd:byte ;
-              rdfs:comment "Little Endian or Big Endian encoding of bytes, i.e. the bit order within each register. Default is Big Endian." .
-
-
 ###  https://www.w3.org/2019/wot/modbus#codeNumber
 :codeNumber rdf:type owl:DatatypeProperty ;
             rdfs:domain :Code ;
             rdfs:range xsd:integer ;
             rdfs:comment "A Modbus function/exception code number"@en ;
             rdfs:label "codeNumber"@en .
-
-
-###  https://www.w3.org/2019/wot/modbus#firstDWordLow
-:firstDWordLow rdf:type owl:DatatypeProperty ;
-               rdfs:range xsd:boolean .
-
-
-###  https://www.w3.org/2019/wot/modbus#firstWordLow
-:firstWordLow rdf:type owl:DatatypeProperty ;
-              rdfs:range xsd:boolean .
 
 
 ###  https://www.w3.org/2019/wot/modbus#length
@@ -216,11 +199,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
         rdfs:range xsd:integer .
 
 
-###  https://www.w3.org/2019/wot/modbus#options
-:options rdf:type owl:DatatypeProperty ;
-         rdfs:range :RequestOption .
-
-
 ###  https://www.w3.org/2019/wot/modbus#pollingTime
 :pollingTime rdf:type owl:DatatypeProperty ;
              rdfs:range xsd:integer .
@@ -234,10 +212,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
 ###  https://www.w3.org/2019/wot/modbus#unitID
 :unitID rdf:type owl:DatatypeProperty ;
         rdfs:range xsd:integer .
-
-
-###  https://www.w3.org/2019/wot/modbus#writeValue
-:writeValue rdf:type owl:DatatypeProperty .
 
 
 ###  https://www.w3.org/2019/wot/modbus#zeroBasedAddressing
@@ -573,14 +547,6 @@ _:genid1 rdf:type schema:Person ;
                  rdfs:comment "Little Endian or Big Endian encoding of bytes, i.e. the bit order within each register. Default is Big Endian"@en .
 
 
-:firstDWordLow rdfs:label "firstDoubleWordLowFlag"@en ;
-               rdfs:comment "Data encoding for 64-bit values; same as firstWordLow but based on DWORDS (i.e. 2 registers) instead of WORDS (1 register)"@en .
-
-
-:firstWordLow rdfs:comment "Data encoding for 32-bit values to chose which of the register is the low value"@en ;
-              rdfs:label "firstWordLowFlag"@en .
-
-
 :length rdfs:label "length"@en ;
         rdfs:comment "Specifies the amount of either registers or coils to be read/written"@en .
 
@@ -588,10 +554,6 @@ _:genid1 rdf:type schema:Person ;
 :offset rdfs:label "offset"@en ;
         rdfs:comment "Specifies the starting address of the modbus operations"@en ;
         binding:assignment binding:required .
-
-
-:options rdfs:comment "Request Options"@en ;
-         rdfs:label "requestOption"@en .
 
 
 :pollingTime rdfs:comment "Modbus TCP maximum polling rate. The Modbus specification does not define a maximum or minimum allowed polling rate, however specific implementations might introduce such limits. Defined as integer of milliseconds." ;
@@ -606,10 +568,6 @@ _:genid1 rdf:type schema:Person ;
 
 :unitID rdfs:label "unitID"@en ;
         rdfs:comment "The Unit ID is usually not needed for ModbusTCP, since the IP-address works as unique identifier, but for compability reasons still often included" .
-
-
-:writeValue rdfs:comment "The value to write to the register or coil, encoded as integer, omitted and ignored for reading operations"@en ;
-            rdfs:label "writeValue"@en .
 
 
 :zeroBasedAddressing rdfs:label "zeroBasedAddressingFlag"@en ;
