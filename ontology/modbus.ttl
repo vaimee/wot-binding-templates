@@ -222,12 +222,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
 xsd:string rdf:type owl:Class .
 
 
-###  https://www.w3.org/2019/wot/modbus#Code
-:Code rdf:type owl:Class ;
-      rdfs:comment "In a Modbus Message the content of a requested operation (sent by client to server) or of a response (elaborated by the server and sent to client) is expressed with a specific code, that could be a normal one ( function code) or an exception one (exception code)."@en ;
-      rdfs:label "Code" .
-
-
 ###  https://www.w3.org/2019/wot/modbus#Entity
 :Entity rdf:type owl:Class ;
         owl:equivalentClass [ rdf:type owl:Class ;
@@ -255,7 +249,7 @@ xsd:string rdf:type owl:Class .
                                             <https://www.w3.org/2019/wot/modbus/functionCode#writeSingleHoldingRegister>
                                           )
                               ] ;
-          rdfs:subClassOf :Code ;
+          rdfs:subClassOf :Payload ;
           rdfs:comment "Function Code class represents the value of the function field in a Modbus frame. Each operation identified with a code also have a corresponding human readable name."@en ;
           rdfs:label "Function"@en .
 
@@ -265,6 +259,12 @@ xsd:string rdf:type owl:Class .
          rdfs:comment "A Modbus Message class represents the comunication between client and server"@en ;
          rdfs:isDefinedBy <https://www.w3.org/2019/wot/modbus> ;
          rdfs:label "A Modbus Message"@en .
+
+
+###  https://www.w3.org/2019/wot/modbus#Payload
+:Payload rdf:type owl:Class ;
+         rdfs:comment "In a Modbus Message the content of a requested operation (sent by client to server) or of a response (elaborated by the server and sent to client) is expressed with a specific code, that could be a normal one ( function code) or an exception one (exception code)."@en ;
+         rdfs:label "Payload"@en .
 
 
 ###  https://www.w3.org/2019/wot/modbus#Request
@@ -292,7 +292,7 @@ xsd:string rdf:type owl:Class .
                                                 <https://www.w3.org/2019/wot/modbus/errorCode#06>
                                               )
                                   ] ;
-              rdfs:subClassOf :Code ;
+              rdfs:subClassOf :Payload ;
               rdfs:comment "In case of Exception Response, the server returns an Exception Code in the data field. Exception Code defines the server condition that caused the exception. Each status identified with a code also have a corresponding human readable name."@en ;
               rdfs:label "Exception Code"@en .
 
