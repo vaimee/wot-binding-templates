@@ -209,9 +209,11 @@ binding:assignment rdf:type owl:AnnotationProperty .
             rdfs:label "hasTimeout"@en .
 
 
-###  https://www.w3.org/2019/wot/modbus#unitID
-:unitID rdf:type owl:DatatypeProperty ;
-        rdfs:range xsd:integer .
+###  https://www.w3.org/2019/wot/modbus#hasUnitID
+:hasUnitID rdf:type owl:DatatypeProperty ;
+           rdfs:range xsd:integer ;
+           rdfs:comment "The Unit ID is usually not needed for ModbusTCP, since the IP-address works as unique identifier, but for compability reasons still often included" ;
+           rdfs:label "hasUnitID"@en .
 
 
 ###  https://www.w3.org/2019/wot/modbus#zeroBasedAddressing
@@ -546,10 +548,6 @@ xsd:string rdf:type owl:Class .
 
 :encodingOption rdfs:label "Byte Encoding"@en ;
                  rdfs:comment "Little Endian or Big Endian encoding of bytes, i.e. the bit order within each register. Default is Big Endian"@en .
-
-
-:unitID rdfs:label "unitID"@en ;
-        rdfs:comment "The Unit ID is usually not needed for ModbusTCP, since the IP-address works as unique identifier, but for compability reasons still often included" .
 
 
 :zeroBasedAddressing rdfs:label "zeroBasedAddressingFlag"@en ;
