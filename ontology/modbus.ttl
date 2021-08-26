@@ -186,16 +186,19 @@ binding:assignment rdf:type owl:AnnotationProperty .
                rdfs:label "hasCodeNumber"@en .
 
 
+###  https://www.w3.org/2019/wot/modbus#hasPollingTime
+:hasPollingTime rdf:type owl:DatatypeProperty ;
+                rdfs:range xsd:integer ;
+                om:usesUnit om:milliseconds ;
+                rdfs:comment "Modbus TCP maximum polling rate. The Modbus specification does not define a maximum or minimum allowed polling rate, however specific implementations might introduce such limits. Defined as integer of milliseconds." ;
+                rdfs:label "hasPollingTime"@en .
+
+
 ###  https://www.w3.org/2019/wot/modbus#hasQuantity
 :hasQuantity rdf:type owl:DatatypeProperty ;
              rdfs:range xsd:integer ;
              rdfs:comment "Specifies the amount of either registers or coils to be read/written"@en ;
              rdfs:label "hasQuantity"@en .
-
-
-###  https://www.w3.org/2019/wot/modbus#pollingTime
-:pollingTime rdf:type owl:DatatypeProperty ;
-             rdfs:range xsd:integer .
 
 
 ###  https://www.w3.org/2019/wot/modbus#timeout
@@ -540,11 +543,6 @@ xsd:string rdf:type owl:Class .
 
 :encodingOption rdfs:label "Byte Encoding"@en ;
                  rdfs:comment "Little Endian or Big Endian encoding of bytes, i.e. the bit order within each register. Default is Big Endian"@en .
-
-
-:pollingTime rdfs:comment "Modbus TCP maximum polling rate. The Modbus specification does not define a maximum or minimum allowed polling rate, however specific implementations might introduce such limits. Defined as integer of milliseconds." ;
-             om:usesUnit om:milliseconds ;
-             rdfs:label "pollingTime"@en .
 
 
 :timeout rdfs:label "timeout"@en ;
