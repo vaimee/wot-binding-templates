@@ -155,12 +155,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
 :unitID rdf:type owl:ObjectProperty ;
         rdfs:domain :Request .
 
-
-###  https://www.w3.org/2019/wot/modbus#writeValue
-:writeValue rdf:type owl:DatatypeProperty ;
-            rdfs:range xsd:integer .
-
-
 ###  https://www.w3.org/2019/wot/modbus#zeroBasedAddressing
 :zeroBasedAddressing rdf:type owl:ObjectProperty ;
                      rdfs:domain :Request .
@@ -209,10 +203,9 @@ binding:assignment rdf:type owl:AnnotationProperty .
 :unitID rdf:type owl:DatatypeProperty ;
         rdfs:range xsd:integer .
 
-
 ###  https://www.w3.org/2019/wot/modbus#writeValue
-:writeValue rdf:type owl:DatatypeProperty .
-
+:writeValue rdf:type owl:DatatypeProperty ;
+            rdfs:range xsd:integer .
 
 ###  https://www.w3.org/2019/wot/modbus#zeroBasedAddressing
 :zeroBasedAddressing rdf:type owl:DatatypeProperty ;
