@@ -178,6 +178,14 @@ binding:assignment rdf:type owl:AnnotationProperty .
             rdfs:label "codeNumber"@en .
 
 
+###  https://www.w3.org/2019/wot/modbus#hasAddress
+:hasAddress rdf:type owl:DatatypeProperty ;
+            rdfs:range xsd:integer ;
+            rdfs:comment "Specifies the starting address of the modbus operations"@en ;
+            rdfs:label "hasAddress"@en ;
+            binding:assignment binding:required .
+
+
 ###  https://www.w3.org/2019/wot/modbus#hasQuantity
 :hasQuantity rdf:type owl:DatatypeProperty ;
              rdfs:range xsd:integer ;
@@ -191,11 +199,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
       rdfs:range xsd:string ;
       rdfs:comment "A Modbus human readable function/exception name" ;
       rdfs:label "name" .
-
-
-###  https://www.w3.org/2019/wot/modbus#offset
-:offset rdf:type owl:DatatypeProperty ;
-        rdfs:range xsd:integer .
 
 
 ###  https://www.w3.org/2019/wot/modbus#pollingTime
@@ -545,11 +548,6 @@ xsd:string rdf:type owl:Class .
 
 :encodingOption rdfs:label "Byte Encoding"@en ;
                  rdfs:comment "Little Endian or Big Endian encoding of bytes, i.e. the bit order within each register. Default is Big Endian"@en .
-
-
-:offset rdfs:comment "Specifies the starting address of the modbus operations"@en ;
-        rdfs:label "offset"@en ;
-        binding:assignment binding:required .
 
 
 :pollingTime rdfs:comment "Modbus TCP maximum polling rate. The Modbus specification does not define a maximum or minimum allowed polling rate, however specific implementations might introduce such limits. Defined as integer of milliseconds." ;
