@@ -201,9 +201,12 @@ binding:assignment rdf:type owl:AnnotationProperty .
              rdfs:label "hasQuantity"@en .
 
 
-###  https://www.w3.org/2019/wot/modbus#timeout
-:timeout rdf:type owl:DatatypeProperty ;
-         rdfs:range xsd:integer .
+###  https://www.w3.org/2019/wot/modbus#hasTimeout
+:hasTimeout rdf:type owl:DatatypeProperty ;
+            rdfs:range xsd:integer ;
+            om:usesUnit om:milliseconds ;
+            rdfs:comment "Modbus response maximum waiting time. Defines how much time the runtime should wait until it receives a reply from the device." ;
+            rdfs:label "hasTimeout"@en .
 
 
 ###  https://www.w3.org/2019/wot/modbus#unitID
@@ -543,11 +546,6 @@ xsd:string rdf:type owl:Class .
 
 :encodingOption rdfs:label "Byte Encoding"@en ;
                  rdfs:comment "Little Endian or Big Endian encoding of bytes, i.e. the bit order within each register. Default is Big Endian"@en .
-
-
-:timeout rdfs:label "timeout"@en ;
-         rdfs:comment "Modbus response maximum waiting time. Defines how much time the runtime should wait until it receives a reply from the device." ;
-         om:usesUnit om:milliseconds .
 
 
 :unitID rdfs:label "unitID"@en ;
