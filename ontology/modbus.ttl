@@ -170,20 +170,20 @@ binding:assignment rdf:type owl:AnnotationProperty .
 #    Data properties
 #################################################################
 
-###  https://www.w3.org/2019/wot/modbus#codeNumber
-:codeNumber rdf:type owl:DatatypeProperty ;
-            rdfs:domain :Code ;
-            rdfs:range xsd:integer ;
-            rdfs:comment "A Modbus function/exception code number"@en ;
-            rdfs:label "codeNumber"@en .
-
-
 ###  https://www.w3.org/2019/wot/modbus#hasAddress
 :hasAddress rdf:type owl:DatatypeProperty ;
             rdfs:range xsd:integer ;
             rdfs:comment "Specifies the starting address of the modbus operations"@en ;
             rdfs:label "hasAddress"@en ;
             binding:assignment binding:required .
+
+
+###  https://www.w3.org/2019/wot/modbus#hasCodeNumber
+:hasCodeNumber rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Code ;
+               rdfs:range xsd:integer ;
+               rdfs:comment "A Modbus function/exception code number"@en ;
+               rdfs:label "hasCodeNumber"@en .
 
 
 ###  https://www.w3.org/2019/wot/modbus#hasQuantity
