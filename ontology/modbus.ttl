@@ -225,7 +225,8 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 ###  https://www.w3.org/2019/wot/modbus#Code
 :Code rdf:type owl:Class ;
-      rdfs:comment "Code"@en .
+      rdfs:comment "In a Modbus Message the content of a requested operation (sent by client to server) or of a response (elaborated by the server and sent to client) is expressed with a specific code, that could be a normal one ( function code) or an exception one (exception code)."@en ;
+      rdfs:label "Code" .
 
 
 ###  https://www.w3.org/2019/wot/modbus#Entity
@@ -256,13 +257,13 @@ binding:assignment rdf:type owl:AnnotationProperty .
                                               )
                                   ] ;
               rdfs:subClassOf :Code ;
-              rdfs:comment "Function Code"@en ;
+              rdfs:comment "Function Code class represents the value of the function field in a Modbus frame. Each operation identified with a code also have a corresponding human readable name."@en ;
               rdfs:label "Function Code"@en .
 
 
 ###  https://www.w3.org/2019/wot/modbus#Message
 :Message rdf:type owl:Class ;
-         rdfs:comment "A Modbus Message"@en ;
+         rdfs:comment "A Modbus Message class represents the comunication between client and server"@en ;
          rdfs:isDefinedBy <https://www.w3.org/2019/wot/modbus> ;
          rdfs:label "A Modbus Message"@en .
 
@@ -270,14 +271,14 @@ binding:assignment rdf:type owl:AnnotationProperty .
 ###  https://www.w3.org/2019/wot/modbus#Request
 :Request rdf:type owl:Class ;
          rdfs:subClassOf :Message ;
-         rdfs:comment "Request"@en ;
+         rdfs:comment "A Request message is sent by a client device to a server device. The comunication client/server stats only with a request sent by the client."@en ;
          rdfs:label "Request"@en .
 
 
 ###  https://www.w3.org/2019/wot/modbus#Response
 :Response rdf:type owl:Class ;
           rdfs:subClassOf :Message ;
-          rdfs:comment "Response"@en ;
+          rdfs:comment "A Response message is sent by a server device to client device in return to a client's query."@en ;
           rdfs:label "Response"@en .
 
 
@@ -293,8 +294,8 @@ binding:assignment rdf:type owl:AnnotationProperty .
                                               )
                                   ] ;
               rdfs:subClassOf :Code ;
-              rdfs:comment "Response Code"@en ;
-              rdfs:label "Response Code"@en .
+              rdfs:comment "In case of Exception Response, the server returns an Exception Code in the data field. Exception Code defines the server condition that caused the exception. Each status identified with a code also have a corresponding human readable name."@en ;
+              rdfs:label "Exception Code"@en .
 
 
 #################################################################
@@ -520,8 +521,8 @@ binding:assignment rdf:type owl:AnnotationProperty .
               rdfs:comment "Data encoding for 32-bit values to chose which of the register is the low value"@en .
 
 
-:length rdfs:comment "Specifies the amount of either registers or coils to be read/written"@en ;
-        rdfs:label "Length of requested registers/coils"@en .
+:length rdfs:label "Length of requested registers/coils"@en ;
+        rdfs:comment "Specifies the amount of either registers or coils to be read/written"@en .
 
 
 :offset rdfs:label "Offset"@en ;
