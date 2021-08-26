@@ -19,7 +19,8 @@
                                       rdfs:comment "Vocabulary to represent Modbus messages in RDF."@en ;
                                       rdfs:label "Modbus in RDF"@en .
 
-_:genid1 schema:name "Jakob Müller" .
+_:genid1 rdf:type schema:Person ;
+          schema:name "Jakob Müller" .
 
 #################################################################
 #    Annotation properties
@@ -156,7 +157,8 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 
 ###  https://www.w3.org/2019/wot/modbus#writeValue
-:writeValue rdf:type owl:ObjectProperty .
+:writeValue rdf:type owl:DatatypeProperty ;
+            rdfs:range xsd:integer .
 
 
 ###  https://www.w3.org/2019/wot/modbus#zeroBasedAddressing
@@ -328,7 +330,8 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 
 ###  https://www.w3.org/2019/wot/modbus#encodingOption
-:encodingOption rdf:type owl:NamedIndividual .
+:encodingOption rdf:type owl:NamedIndividual ,
+                         xsd:string .
 
 
 ###  https://www.w3.org/2019/wot/modbus#readCoil
@@ -500,7 +503,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
                                                     rdfs:label "Write Single HoldingRegister"@en .
 
 
-_:genid1 schema:name "Jakob Müller" .
 
 #################################################################
 #    Annotations
