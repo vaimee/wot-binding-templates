@@ -12,15 +12,16 @@
 @base <https://www.w3.org/2019/wot/modbus> .
 
 <https://www.w3.org/2019/wot/modbus> rdf:type owl:Ontology ;
-                                      dct:author _:genid1 ;
-                                      dct:contributor _:genid1 ;
+                                      dct:author "Jakob Müller https://github.com/Drukob" ;
+                                      dct:contributor "Cristiano Aguzzi https://github.com/relu91" ,
+                                                      "Elisa Riforgiato https://github.com/elithkob"  ,
+                                                      "Jakob Müller https://github.com/Drukob" ,
+                                                      "Luca Roffia https://github.com/lroffia" ;
                                       vann:preferredNamespacePrefix "modbus" ;
                                       vann:preferredNamespaceUri : ;
                                       rdfs:comment "Vocabulary to represent Modbus messages in RDF."@en ;
                                       rdfs:label "Modbus in RDF"@en .
 
-_:genid1 rdf:type schema:Person ;
-          schema:name "Jakob Müller" .
 
 #################################################################
 #    Annotation properties
