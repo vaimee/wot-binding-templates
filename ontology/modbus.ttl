@@ -55,7 +55,9 @@ om:usesUnit rdf:type owl:AnnotationProperty .
 binding:assignment rdf:type owl:AnnotationProperty .
 
 
-###  https://www.w3.org/2019/wot/modbus#writeValue
+###  https://www.w3.org/2019/wot/modbus#
+
+
 :writeValue rdf:type owl:AnnotationProperty ;
             rdfs:range xsd:integer ;
             rdfs:domain :RequestOption .
@@ -156,6 +158,10 @@ binding:assignment rdf:type owl:AnnotationProperty .
 :unitID rdf:type owl:ObjectProperty ;
         rdfs:domain :Request .
 
+###  https://www.w3.org/2019/wot/modbus#writeValue
+:writeValue rdf:type owl:ObjectProperty ;
+            rdfs:domain :Request .
+
 ###  https://www.w3.org/2019/wot/modbus#zeroBasedAddressing
 :zeroBasedAddressing rdf:type owl:ObjectProperty ;
                      rdfs:domain :Request .
@@ -165,52 +171,57 @@ binding:assignment rdf:type owl:AnnotationProperty .
 #    Data properties
 #################################################################
 
-###  https://www.w3.org/2019/wot/modbus#firstDWordLow
-:firstDWordLow rdf:type owl:DatatypeProperty ;
-               rdfs:range xsd:boolean .
+###  https://www.w3.org/2019/wot/modbus#hasAddress
+:hasAddress rdf:type owl:DatatypeProperty ;
+            rdfs:range xsd:integer ;
+            rdfs:comment "Specifies the starting address of the modbus operations"@en ;
+            rdfs:label "hasAddress"@en ;
+            binding:assignment binding:required .
 
 
-###  https://www.w3.org/2019/wot/modbus#firstWordLow
-:firstWordLow rdf:type owl:DatatypeProperty ;
-              rdfs:range xsd:boolean .
+###  https://www.w3.org/2019/wot/modbus#hasCodeNumber
+:hasCodeNumber rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Code ;
+               rdfs:range xsd:integer ;
+               rdfs:comment "A Modbus function/exception code number"@en ;
+               rdfs:label "hasCodeNumber"@en .
 
 
-###  https://www.w3.org/2019/wot/modbus#length
-:length rdf:type owl:DatatypeProperty ;
-        rdfs:range xsd:integer .
+###  https://www.w3.org/2019/wot/modbus#hasPollingTime
+:hasPollingTime rdf:type owl:DatatypeProperty ;
+                rdfs:range xsd:integer ;
+                om:usesUnit om:milliseconds ;
+                rdfs:comment "Modbus TCP maximum polling rate. The Modbus specification does not define a maximum or minimum allowed polling rate, however specific implementations might introduce such limits. Defined as integer of milliseconds." ;
+                rdfs:label "hasPollingTime"@en .
 
 
-###  https://www.w3.org/2019/wot/modbus#offset
-:offset rdf:type owl:DatatypeProperty ;
-        rdfs:range xsd:integer .
+###  https://www.w3.org/2019/wot/modbus#hasQuantity
+:hasQuantity rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:integer ;
+             rdfs:comment "Specifies the amount of either registers or coils to be read/written"@en ;
+             rdfs:label "hasQuantity"@en .
 
 
-###  https://www.w3.org/2019/wot/modbus#options
-:options rdf:type owl:DatatypeProperty ;
-         rdfs:range :RequestOption .
+###  https://www.w3.org/2019/wot/modbus#hasTimeout
+:hasTimeout rdf:type owl:DatatypeProperty ;
+            rdfs:range xsd:integer ;
+            om:usesUnit om:milliseconds ;
+            rdfs:comment "Modbus response maximum waiting time. Defines how much time the runtime should wait until it receives a reply from the device." ;
+            rdfs:label "hasTimeout"@en .
 
 
-###  https://www.w3.org/2019/wot/modbus#pollingTime
-:pollingTime rdf:type owl:DatatypeProperty ;
-             rdfs:range xsd:integer .
+###  https://www.w3.org/2019/wot/modbus#hasUnitID
+:hasUnitID rdf:type owl:DatatypeProperty ;
+           rdfs:range xsd:integer ;
+           rdfs:comment "The Unit ID is usually not needed for ModbusTCP, since the IP-address works as unique identifier, but for compability reasons still often included" ;
+           rdfs:label "hasUnitID"@en .
 
 
-###  https://www.w3.org/2019/wot/modbus#timeout
-:timeout rdf:type owl:DatatypeProperty ;
-         rdfs:range xsd:integer .
-
-
-###  https://www.w3.org/2019/wot/modbus#unitID
-:unitID rdf:type owl:DatatypeProperty ;
-        rdfs:range xsd:integer .
-
-###  https://www.w3.org/2019/wot/modbus#writeValue
-:writeValue rdf:type owl:DatatypeProperty ;
-            rdfs:range xsd:integer .
-
-###  https://www.w3.org/2019/wot/modbus#zeroBasedAddressing
-:zeroBasedAddressing rdf:type owl:DatatypeProperty ;
-                     rdfs:range xsd:boolean .
+###  https://www.w3.org/2019/wot/modbus#hasZeroBasedAddressingFlag
+:hasZeroBasedAddressingFlag rdf:type owl:DatatypeProperty ;
+                            rdfs:range xsd:boolean ;
+                            rdfs:comment "Modbus implementations can differ in the way addressing works, as the first coil/register can be either referred to as True or False."@en ;
+                            rdfs:label "hasZeroBasedAddressingFlag"@en .
 
 
 #################################################################
@@ -505,49 +516,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 :encodingOption rdfs:label "Byte Encoding"@en ;
                  rdfs:comment "Little Endian or Big Endian encoding of bytes, i.e. the bit order within each register. Default is Big Endian"@en .
-
-
-:firstDWordLow rdfs:comment "Data encoding for 64-bit values; same as firstWordLow but based on DWORDS (i.e. 2 registers) instead of WORDS (1 register)"@en ;
-               rdfs:label "First DoubleWord Low Flag"@en .
-
-
-:firstWordLow rdfs:label "First Word Low Flag"@en ;
-              rdfs:comment "Data encoding for 32-bit values to chose which of the register is the low value"@en .
-
-
-:length rdfs:label "Length of requested registers/coils"@en ;
-        rdfs:comment "Specifies the amount of either registers or coils to be read/written"@en .
-
-
-:offset rdfs:label "Offset"@en ;
-        rdfs:comment "Specifies the starting address of the modbus operations"@en ;
-        binding:assignment binding:required .
-
-
-:options rdfs:comment "Request Options"@en ;
-         rdfs:label "Request Options"@en .
-
-
-:pollingTime rdfs:label "Modbus TCP maximum polling rate"@en ;
-             rdfs:comment "The Modbus specification does not define a maximum or minimum allowed polling rate, however specific implementations might introduce such limits. Defined as integer of milliseconds." ;
-             om:usesUnit om:milliseconds .
-
-
-:timeout rdfs:label "Modbus response maximum waiting time"@en ;
-         rdfs:comment "Defines how much time the runtime should wait until it receives a reply from the device." ;
-         om:usesUnit om:milliseconds .
-
-
-:unitID rdfs:label "UnitID"@en ;
-        rdfs:comment "The Unit ID is usually not needed for ModbusTCP, since the IP-address works as unique identifier, but for compability reasons still often included" .
-
-
-:writeValue rdfs:comment "The value to write to the register or coil, encoded as integer, omitted and ignored for reading operations"@en ;
-            rdfs:label "Write Value"@en .
-
-
-:zeroBasedAddressing rdfs:label "Zero Based Addressing Flag"@en ;
-                     rdfs:comment "Modbus implementations can differ in the way addressing works, as the first coil/register can be either referred to as '0' or '1'. Default is '0'."@en .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
