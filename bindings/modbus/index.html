@@ -2,12 +2,19 @@
 <html>
 <head>
     <meta charset='utf-8'>
-    <script src='https://www.w3.org/Tools/respec/respec-w3c-common' class='remove'></script>
+    <script src='https://www.w3.org/Tools/respec/respec-w3c' class='remove'></script>
     <script class='remove'>
         var respecConfig = {
             specStatus: "ED",
-            editors: [],
-            edDraftURI: "",
+            editors: [
+                { 
+                    name: "Cristiano Aguzzi", 
+                    w3cid: "105495", 
+                    company: "Invited Expert", 
+                    companyURL: "https://github.com/relu91" 
+                }
+            ],
+            edDraftURI: "https://w3c.github.io/wot-binding-templates/modbus",
             shortName: "wot-modbus-template",
             otherLinks: [
                 {
@@ -25,7 +32,30 @@
 
 <body>
     <section id='abstract'>
-        <p class="ednote">TODO:</p>
+        <p class="ednote">TODO: Provide a short overview of the document and the protocol binding features.</p>
+    </section>
+    <section id='introduction'>
+        <h2>Introduction</h2>
+        <p class="ednote">the following is a draft introduction</p>
+        <p>
+            The ModBus is a data communication protocol originally developed by Modicon which is now a part of Schneider Electric.
+            The protocol was specifically designed for the remote management of the hardware devices in the industrial environment.
+            For this reason, it has low level of abstraction and it has built in bit handling capabilities oriented to the direct
+            control of the relays and generic contact statuses.
+            The physical layer it is mainly an RS485 differential bus which has less susceptibility to the EMC interference. This Limit
+            the usability of the protocol in short distance networks, typically within a kilometer. 
+            Due to its age the protocol does not implement any safety system, so usually when wide internet access is needed it is
+            encapsulated in a TCP/IP protocol and with Ethernet as a physical layer. Thanks to this encapsulation strategy, the ModBus protocol
+            can reach remote nodes deployed in distant facilities over the internet. Moreover, in the years due to its simplicity and cost-effectiveness 
+            the ModBus protocol becomes a standard all over the world. This fame together with the advancement of the microcontroller/microprocessor led to 
+            a shift on how applications pack the information. Today it is usual to store and read any type of data in the Holdings Registers like bit,bytes,words, float etc.
+        </p>
+        <p>
+            This document describes how the Web of Things specification can be use to present devices that use the ModBus protocol in a <a>Thing Description</a>. In 
+            particular, the document explain how to create valid URLs and Forms for the different operations that the ModBus protocol can perform. Developers are 
+            encouraged to use this document as an implementation guidelines and as a reference for the creation of their own binding implementations. The following sections
+            will cover the URL format, the Vocabulary and a list of Form examples. 
+        </p>
     </section>
     <section id='sotd'>
         <p>
@@ -38,7 +68,7 @@
             modbus+tcp://{address}:{port}/{?unitID}
         </pre>
     </section>
-    <section>
+    <section id="vocabulary">
         <h2>Modbus Vocabulary</h2>
         <section>
             <h3>Form terms</h3>
@@ -55,152 +85,80 @@
                     <!-- Generate forms terms from the ontology-->
                     
         <tr>
-            <td><code>modv:entity</code></td>
-            <td>A registry type to let the runtime automatically detect the right function code</td>
-            <td>optional</td>
-            <td><a href="#entity">Entity</a></td>
-        <tr>
-        
-
-        <tr>
-            <td><code>modv:firstDWordLow</code></td>
-            <td>Data encoding for 64-bit values; same as firstWordLow but based on DWORDS (i.e. 2 registers) instead of WORDS (1 register)</td>
-            <td>optional</td>
-            <td><a href="http://www.w3.org/2001/XMLSchema#boolean">boolean</a></td>
-        <tr>
-        
-
-        <tr>
-            <td><code>modv:firstWordLow</code></td>
-            <td>Data encoding for 32-bit values to chose which of the register is the low value</td>
-            <td>optional</td>
-            <td><a href="http://www.w3.org/2001/XMLSchema#boolean">boolean</a></td>
-        <tr>
-        
-
-        <tr>
-            <td><code>modv:function</code></td>
-            <td>Function Code sent by the master in every request. Specifying the desired interaction.</td>
-            <td>optional</td>
-            <td><a href="#functioncode">FunctionCode</a></td>
-        <tr>
-        
-
-        <tr>
-            <td><code>modv:function</code></td>
-            <td>Function Code sent by the master in every request. Specifying the desired interaction.</td>
-            <td>optional</td>
-            <td><a href="#functionname">FunctionName</a></td>
-        <tr>
-        
-
-        <tr>
-            <td><code>modv:length</code></td>
-            <td>Specifies the amount of either registers or coils to be read/written</td>
-            <td>optional</td>
-            <td><a href="http://www.w3.org/2001/XMLSchema#integer">integer</a></td>
-        <tr>
-        
-
-        <tr>
-            <td><code>modv:offset</code></td>
+            <td><code>modbus:offset</code></td>
             <td>Specifies the starting address of the modbus operations</td>
             <td>required</td>
             <td><a href="http://www.w3.org/2001/XMLSchema#integer">integer</a></td>
+
         <tr>
         
 
         <tr>
-            <td><code>modv:pollingTime</code></td>
+            <td><code>modbus:length</code></td>
+            <td>Specifies the amount of either registers or coils to be read/written</td>
+            <td>optional</td>
+            <td><a href="http://www.w3.org/2001/XMLSchema#integer">integer</a></td>
+
+        <tr>
+        
+
+        <tr>
+            <td><code>modbus:pollingTime</code></td>
             <td>The Modbus specification does not define a maximum or minimum allowed polling rate, however specific implementations might introduce such limits. Defined as integer of milliseconds.</td>
             <td>optional</td>
             <td><a href="http://www.w3.org/2001/XMLSchema#integer">integer</a></td>
+
         <tr>
         
 
         <tr>
-            <td><code>modv:timeout</code></td>
+            <td><code>modbus:timeout</code></td>
             <td>Defines how much time the runtime should wait until it receives a reply from the device.</td>
             <td>optional</td>
             <td><a href="http://www.w3.org/2001/XMLSchema#integer">integer</a></td>
+
         <tr>
         
 
         <tr>
-            <td><code>modv:unitID</code></td>
-            <td>The Unit ID is usually not needed for ModbusTCP, since the IP-address works as unique identifier, but for compability reasons still often included</td>
-            <td>optional</td>
-            <td><a href="http://www.w3.org/2001/XMLSchema#integer">integer</a></td>
-        <tr>
-        
-
-        <tr>
-            <td><code>modv:zeroBasedAddressing</code></td>
+            <td><code>modbus:zeroBasedAddressing</code></td>
             <td>Modbus implementations can differ in the way addressing works, as the first coil/register can be either referred to as '0' or '1'. Default is '0'.</td>
             <td>optional</td>
-            <td><a href="http://www.w3.org/2001/XMLSchema#boolean">boolean</a></td>
+            <td><a href="http://www.w3.org/2001/XMLSchema#integer">integer</a></td>
+
+        <tr>
+        
+
+        <tr>
+            <td><code>modbus:entity</code></td>
+            <td>A registry type to let the runtime automatically detect the right function code</td>
+            <td>optional</td>
+            <td><a href="#entity">Entity</a></td>
+
+        <tr>
+        
+
+        <tr>
+            <td><code>modbus:function</code></td>
+            <td>Function Code sent by the master in every request. Specifying the desired interaction.</td>
+            <td>optional</td>
+            <td><a href="#functioncode">FunctionCode</a></td>
+
+        <tr>
+        
+
+        <tr>
+            <td><code>modbus:function</code></td>
+            <td>Function Code sent by the master in every request. Specifying the desired interaction.</td>
+            <td>optional</td>
+            <td><a href="#functionname">FunctionName</a></td>
+
         <tr>
         
                 </tbody>
             </table>
         </section>
-        <section>
-            <h3>Default mappings</h3>
-            <table class="def">
-                <thead>
-                    <tr>
-                        <th>Operation</th>
-                        <th>Default Biding</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Generate mappings from the mapping ontology -->
-                    
-        <tr>
-            <td><code>readallproperties</code></td>
-            <td><code>"modv:function": "readHoldingRegisters"</code></td>
-        <tr>
-        
-
-        <tr>
-            <td><code>readmultipleproperties</code></td>
-            <td><code>"modv:function": "readHoldingRegisters"</code></td>
-        <tr>
-        
-
-        <tr>
-            <td><code>writeallproperties</code></td>
-            <td><code>"modv:function": "writeMultipleHoldingRegisters"</code></td>
-        <tr>
-        
-
-        <tr>
-            <td><code>writemultipleproperties</code></td>
-            <td><code>"modv:function": "writeMultipleHoldingRegisters"</code></td>
-        <tr>
-        
-
-        <tr>
-            <td><code>readproperty</code></td>
-            <td><code>"modv:function": "readCoil"</code></td>
-        <tr>
-        
-
-        <tr>
-            <td><code>invokeaction</code></td>
-            <td><code>"modv:function": "writeSingleCoil"</code></td>
-        <tr>
-        
-
-        <tr>
-            <td><code>writeproperty</code></td>
-            <td><code>"modv:function": "writeSingleCoil"</code></td>
-        <tr>
-        
-                </tbody>
-            </table>
-        </section>
-        <section>
+        <section id="entity">
             <h3>Entity</h3>
             <p class="ednote"> the following is just a draft description of the Entity class
             </p>
@@ -345,63 +303,73 @@
                 <tbody>
                     <!-- Generate possible values of the function Name-->
                     
+                </tbody>
+            </table>
+        </section>
+    </section>
+    <section id="mapppings">
+        <h2>Mappings</h2>
+        <p>This section describes strategies and default values to employ protocol specific concepts within the <a>WoT Interaction
+        model</a>. </p>
+        <section id="defautl-mappings">
+            <h3>Default mappings</h3>
+            <table class="def">
+                <thead>
+                    <tr>
+                        <th>Operation</th>
+                        <th>Default Biding</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Generate mappings from the mapping ontology -->
+                    
         <tr>
-            <td><code>readCoil</code></td>
-            <td><code>1</code</td>
-            <td>Read a single coil (i.e. boolean/bit access) value. Usually in the address range 00001-09999</td>
-        <tr>
-        
-
-        <tr>
-            <td><code>readDiscreteInput</code></td>
-            <td><code>2</code</td>
-            <td>Read Physical Discrete Inputs (bit access). Address range 10001-19999</td>
-        <tr>
-        
-
-        <tr>
-            <td><code>readHoldingRegisters</code></td>
-            <td><code>3</code</td>
-            <td>Read Multiple Holding Registers (16 bit access). Address range 40001-49999</td>
-        <tr>
-        
-
-        <tr>
-            <td><code>readInputRegisters</code></td>
-            <td><code>4</code</td>
-            <td>Read Multiple Physical Input Registers (16 bits). Address range 30001-39999</td>
+            <td><code>writeproperty</code></td>
+            <td><code>"modbus:function": "writeSingleCoil"</code></td>
         <tr>
         
 
         <tr>
-            <td><code>writeMultipleCoils</code></td>
-            <td><code>15</code</td>
-            <td>Write Multiple Physical Coils (internal bits). Address range 00001-09999</td>
+            <td><code>invokeaction</code></td>
+            <td><code>"modbus:function": "writeSingleCoil"</code></td>
         <tr>
         
 
         <tr>
-            <td><code>writeMultipleHoldingRegisters</code></td>
-            <td><code>16</code</td>
-            <td>Write Multiple Holding Registers (output registers, 16 bit). Address range 40001-49999</td>
+            <td><code>readallproperties</code></td>
+            <td><code>"modbus:function": "readHoldingRegisters"</code></td>
         <tr>
         
 
         <tr>
-            <td><code>writeSingleCoil</code></td>
-            <td><code>5</code</td>
-            <td>Write Single Physical Coil (internal bit). Address range 00001-09999</td>
+            <td><code>readmultipleproperties</code></td>
+            <td><code>"modbus:function": "readHoldingRegisters"</code></td>
         <tr>
         
 
         <tr>
-            <td><code>writeSingleHoldingRegister</code></td>
-            <td><code>6</code</td>
-            <td>Write Single HoldingRegister (internal bits). Address range 40001-49999</td>
+            <td><code>writeallproperties</code></td>
+            <td><code>"modbus:function": "writeMultipleHoldingRegisters"</code></td>
+        <tr>
+        
+
+        <tr>
+            <td><code>writemultipleproperties</code></td>
+            <td><code>"modbus:function": "writeMultipleHoldingRegisters"</code></td>
+        <tr>
+        
+
+        <tr>
+            <td><code>readproperty</code></td>
+            <td><code>"modbus:function": "readCoil"</code></td>
         <tr>
         
                 </tbody>
             </table>
+        </section>
+        <section id="possible-mappings">
+            <h3>Possible mappings</h3>
+            <p class="ednote">TODO: This section should describe other mappings that can be used by TD designers. It is meant to be informative but it provides guidelines for implementers.</p>
         </section>
     </section>
     <section>
