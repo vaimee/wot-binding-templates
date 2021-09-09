@@ -19,8 +19,7 @@ template :modbus {
         st:call-template(:formTerms, ?modbusBase, ?prefix)
         st:call-template(:entityValues, ?modbusBase, ?prefix)
         st:call-template(:codeValues, ?modbusBase, ?prefix)
-        st:call-template(:nameValues, ?modbusBase, ?prefix)
-         st:call-template(:mappings, ?modbusBase, ?prefix)
+        st:call-template(:mappings, ?modbusBase, ?prefix)
     }
 }  where {
     ?mappings a owl:Ontology ;
@@ -40,7 +39,7 @@ template :formTerms(?ns ?prefix){
 
         <tr>
         """
-        replace(?term,concat(?ns,"#"),concat(?prefix,":"),"g")
+        st:call-template(:term, ?ns, ?prefix, ?term)
         ?desc
         if(?count > 0, "required","optional")
         if(strstarts(?type,str(?ns)), lcase(replace(?type, ?ns,"","g")),?type )
@@ -68,6 +67,24 @@ template :formTerms(?ns ?prefix){
     BIND ( IF (BOUND (?count), ?count, 0 )  as ?count  )
    
 } 
+
+template :term(?ns ?prefix ?term){
+    format {
+        """%s"""
+    if(?isJSONLD,
+        concat(?prefix,":",?printTerm),
+        replace(?printTerm,concat(?ns,"#"),concat(?prefix,":"),"g")
+    )
+    }
+} where {
+    optional {
+        ?mapping a jsonld:Mapping ;
+            jsonld:iri ?term ;
+            jsonld:term ?mappedTerm;
+    }
+    BIND ( BOUND (?mappedTerm) as ?isJSONLD )
+    BIND ( IF (BOUND (?mappedTerm), ?mappedTerm, ?term )  as ?printTerm  )
+}
 
 template :mappings(?ns ?prefix){
     format {

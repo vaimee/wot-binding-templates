@@ -1,6 +1,7 @@
 let fs = require('fs');
 let sttl = require('sttl');
 let urdf = require('urdf');
+const toRDf = require('./toRdf.js').context
 
 const tpl = fs.readFileSync('ontology/templates.rq', 'utf-8');
 
@@ -46,7 +47,7 @@ const promiseChain = ontologies.reduce((p, src) => {
 console.log("Rendering WoT binding documentation...");
 
 const mappings = [
-    ['bindings/modbus/mapping.ttl','ontology/modbus.ttl','http://w3c.github.io/wot-binding-templates/mappings#modbus'],
+    ['bindings/modbus/mapping.ttl', 'ontology/modbus.ttl', 'http://w3c.github.io/wot-binding-templates/mappings#modbus','bindings/modbus/context.jsonld'],
 ];
 
 
@@ -57,8 +58,14 @@ mappings.reduce((p, src) => {
     const ontologyFile = src[0]
     const baseOntologyFile = src[1]
     const templateURI = src[2]
+    const contextFile = src[3]
     let base = fs.readFileSync( baseOntologyFile, 'UTF-8');
     return p.then( _ => urdf.load(base,{ format: 'text/turtle' }))
+        .then(() => {
+            const jsonld = fs.readFileSync(contextFile,'utf8');
+            const result = toRDf(JSON.parse(jsonld));
+            return urdf.load(result)
+        })
         .then( _ => render(ontologyFile,templateURI,ontologyFile.replace('mapping.ttl', 'index.html')))
         .then(() => urdf.clear());
 },promiseChain);

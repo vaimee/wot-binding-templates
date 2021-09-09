@@ -81,7 +81,7 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 
 ###  https://www.w3.org/2019/wot/modbus#entity
-:entity rdf:type owl:ObjectProperty ;
+:hasEntity rdf:type owl:ObjectProperty ;
         rdfs:domain :Request ;
         rdfs:range :Entity ;
         rdfs:comment "A registry type to let the runtime automatically detect the right function code"@en ;
@@ -100,7 +100,7 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 
 ###  https://www.w3.org/2019/wot/modbus#function
-:function rdf:type owl:ObjectProperty ;
+:hasFunction rdf:type owl:ObjectProperty ;
           rdfs:domain :Request ;
           rdfs:range :FunctionCode ;
           rdfs:comment "Function Code sent by the master in every request. Specifying the desired interaction."@en ;

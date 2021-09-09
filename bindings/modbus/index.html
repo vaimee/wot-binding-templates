@@ -85,8 +85,8 @@
                     <!-- Generate forms terms from the ontology-->
                     
         <tr>
-            <td><code>modbus:offset</code></td>
-            <td>Specifies the starting address of the modbus operations</td>
+            <td><code>modbus:quantity</code></td>
+            <td>Specifies the amount of either registers or coils to be read/written</td>
             <td>required</td>
             <td><a href="http://www.w3.org/2001/XMLSchema#integer">integer</a></td>
 
@@ -94,8 +94,17 @@
         
 
         <tr>
-            <td><code>modbus:length</code></td>
-            <td>Specifies the amount of either registers or coils to be read/written</td>
+            <td><code>modbus:address</code></td>
+            <td>Specifies the starting address of the modbus operations</td>
+            <td>optional</td>
+            <td><a href="http://www.w3.org/2001/XMLSchema#integer">integer</a></td>
+
+        <tr>
+        
+
+        <tr>
+            <td><code>modbus:unitID</code></td>
+            <td>The Unit ID is usually not needed for ModbusTCP, since the IP-address works as unique identifier, but for compability reasons still often included</td>
             <td>optional</td>
             <td><a href="http://www.w3.org/2001/XMLSchema#integer">integer</a></td>
 
@@ -104,7 +113,7 @@
 
         <tr>
             <td><code>modbus:pollingTime</code></td>
-            <td>The Modbus specification does not define a maximum or minimum allowed polling rate, however specific implementations might introduce such limits. Defined as integer of milliseconds.</td>
+            <td>Modbus TCP maximum polling rate. The Modbus specification does not define a maximum or minimum allowed polling rate, however specific implementations might introduce such limits. Defined as integer of milliseconds.</td>
             <td>optional</td>
             <td><a href="http://www.w3.org/2001/XMLSchema#integer">integer</a></td>
 
@@ -113,7 +122,7 @@
 
         <tr>
             <td><code>modbus:timeout</code></td>
-            <td>Defines how much time the runtime should wait until it receives a reply from the device.</td>
+            <td>Modbus response maximum waiting time. Defines how much time the runtime should wait until it receives a reply from the device.</td>
             <td>optional</td>
             <td><a href="http://www.w3.org/2001/XMLSchema#integer">integer</a></td>
 
@@ -122,9 +131,9 @@
 
         <tr>
             <td><code>modbus:zeroBasedAddressing</code></td>
-            <td>Modbus implementations can differ in the way addressing works, as the first coil/register can be either referred to as '0' or '1'. Default is '0'.</td>
+            <td>Modbus implementations can differ in the way addressing works, as the first coil/register can be either referred to as True or False.</td>
             <td>optional</td>
-            <td><a href="http://www.w3.org/2001/XMLSchema#integer">integer</a></td>
+            <td><a href="http://www.w3.org/2001/XMLSchema#boolean">boolean</a></td>
 
         <tr>
         
@@ -146,15 +155,6 @@
 
         <tr>
         
-
-        <tr>
-            <td><code>modbus:function</code></td>
-            <td>Function Code sent by the master in every request. Specifying the desired interaction.</td>
-            <td>optional</td>
-            <td><a href="#functionname">FunctionName</a></td>
-
-        <tr>
-        
                 </tbody>
             </table>
         </section>
@@ -162,8 +162,8 @@
             <h3>Entity</h3>
             <p class="ednote"> the following is just a draft description of the Entity class
             </p>
-            A more user-friendly property to specify [[[#functioncode]]] or [[[#functionname]]]. The client will then determine the right function code to be applied in
-            the modbus request. Futhermore, it can be used in multi-operation forms whereas <code>modv:function</code> cannot (See the
+            A more user-friendly property to specify [[[#functioncode]]]. The client will then determine the right function code to be applied in
+            the modbus request. Futhermore, it can be used in multi-operation forms whereas <code>modbus:function</code> cannot (See the
             [[[#example-read-coil-entity]]])
             
             <table class="def" title="Entity values">
@@ -201,7 +201,7 @@
         
                 </tbody>
             </table>
-            <b>Notice</b> that when used in conjunction with <code>modv:function</code>, the value of <code>modv:function</code> property is ignored.
+            <b>Notice</b> that when used in conjunction with <code>modbus:function</code>, the value of <code>modbus:function</code> property is ignored.
         </section>
         <section id="functioncode">
             <h3>Function Code</h3>
@@ -285,27 +285,6 @@
                 </tbody>
             </table>
         </section>
-        <section id="functionname">
-            <h3>Function Name</h3>
-            <p class="ednote">The following is just a draft description of the Function Name class
-            </p>
-            This class rapresents a mapping between [[[#functioncode]]] and the most accepted label for the 
-            corresponding operation.The following table contains the values assiagnable to Function Name toghert
-            with the reference their [[[#functioncode]]].
-            <table class="def" title="Entity values">
-                <thead>
-                    <tr>
-                        <th>Value</th>
-                        <th>Function Code</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Generate possible values of the function Name-->
-                    
-                </tbody>
-            </table>
-        </section>
     </section>
     <section id="mapppings">
         <h2>Mappings</h2>
@@ -358,12 +337,6 @@
             <td><code>"modbus:function": "writeMultipleHoldingRegisters"</code></td>
         <tr>
         
-
-        <tr>
-            <td><code>readproperty</code></td>
-            <td><code>"modbus:function": "readCoil"</code></td>
-        <tr>
-        
                 </tbody>
             </table>
         </section>
@@ -385,7 +358,7 @@
                     "readproperty"
                 ],
                 "modbus:function": "readCoil",
-                "modbus:offset": 1
+                "modbus:address": 1
             }
         </pre>
         To describe forms with multiple operations types, the [[[#entity]]] keyword can be used to create 
@@ -398,7 +371,7 @@
                             "writeproperty"
                         ],
                         "modbus:entity": "Coil",
-                        "modbus:offset": 1
+                        "modbus:address": 1
                     }
         </pre>
         A TD processor will intepred [[[#example-read-coil-entity]]] configuration as the following:
@@ -409,7 +382,7 @@
                                     "readproperty",
                                 ],
                                 "modbus:function": "readCoil",
-                                "modbus:offset": 1
+                                "modbus:address": 1
                             },
                             {
                                 "href": "modbus+tcp://127.0.0.1:60000/1",
@@ -417,7 +390,7 @@
                                     "writeproperty",
                                 ],
                                 "modbus:function": "writeCoil",
-                                "modbus:offset": 1
+                                "modbus:address": 1
                             },
         </pre>
         Reducing effectively the verbosity of a TD. 
@@ -433,8 +406,8 @@
                                     "writeproperty"
                                 ],
                                 "modbus:entity": "HoldingRegister",
-                                "modbus:offset": 40001,
-                                "modbus:length": 8
+                                "modbus:address": 40001,
+                                "modbus:quantity": 8
                             }
                 </pre>
         When possible WoT consumers will use modbus features to read the desired amount of data with a single
@@ -449,8 +422,8 @@
                                     "writeproperty"
                                 ],
                                 "modbus:entity": "Coil",
-                                "modbus:offset": 1,
-                                "modbus:length": 8
+                                "modbus:address": 1,
+                                "modbus:quantity": 8
                             }
                 </pre>
         Another notable configuration of a form using the modbus vocabulary is the polling mechanism. Thanks
@@ -459,15 +432,15 @@
         1000 ms, in [[[#example-polling]]], it suggest that the polling time should not be faster than 10 ms. WoT 
         consumers may still create requests faster than the specified time but it should be taken as a reasonable
         default for observing a property. 
-        <pre  id="example-polling" class="example" title="A complete TD example">
+        <pre  id="example-polling" class="example" title="Polling">
             {
                 "href": "modbus+tcp://127.0.0.1:60000/1",
                 "op": [
                     "observeproperty"
                 ],
                 "modbus:entity": "Coil",
-                "modbus:pollingTime: 1000,
-                "modbus:offset": 1
+                "modbus:pollingTime": 1000,
+                "modbus:address": 1
             }
         </pre>
         Finally, [[[#full-td]]] shows a complete device described using modbus ontology.
@@ -476,7 +449,7 @@
                   "@context": [
                       "https://www.w3.org/2019/wot/td/v1",
                       {
-                          "modv": "https://www.example.com/ns/modbustcp"
+                          "modbus": "https://www.example.com/ns/modbustcp"
                       }
                   ],
                   "title": "ModbusPLC",
@@ -499,10 +472,10 @@
                               {
                                   "op": "readproperty",
                                   "href": "modbus+tcp://192.168.178.32:502/10003",
-                                  "modv:function": "2",
-                                  "modv:length": 1,
-                                  "modv:offset": "10003",
-                                  "modv:unitID": "1",
+                                  "modbus:function": "2",
+                                  "modbus:quantity": 1,
+                                  "modbus:address": "10003",
+                                  "modbus:unitID": 1,
                                   "contentType": "application/octet-stream"
                               }
                           ]
@@ -515,10 +488,10 @@
                               {
                                   "op": "readproperty",
                                   "href": "modbus+tcp://192.168.178.32:502/10002",
-                                  "modv:function": "readDiscreteInput",
-                                  "modv:length": 1,
-                                  "modv:offset": "10002",
-                                  "modv:unitID": "1",
+                                  "modbus:function": "readDiscreteInput",
+                                  "modbus:quantity": 1,
+                                  "modbus:address": "10002",
+                                  "modbus:unitID": 1,
                                   "contentType": "application/octet-stream"
                               }
                           ]
@@ -535,11 +508,11 @@
                                       "readproperty"
                                   ],
                                   "href": "modbus+tcp://192.168.178.32:502/00006",
-                                  "modv:entity": "Coil",
-                                  "modv:length": 1,
-                                  "modv:offset": "00006",
-                                  "modv:unitID": "1",
-                                  "modv:pollingTime": 100,
+                                  "modbus:entity": "Coil",
+                                  "modbus:quantity": 1,
+                                  "modbus:address": "00006",
+                                  "modbus:unitID": 1,
+                                  "modbus:pollingTime": 100,
                                   "contentType": "application/octet-stream"
                               }
                           ]
@@ -556,11 +529,11 @@
                                       "readproperty"
                                   ],
                                   "href": "modbus+tcp://192.168.178.32:502/00003",
-                                  "modv:entity": "Coil",
-                                  "modv:length": 1,,
-                                  "modv:offset": "00003",
-                                  "modv:unitID": "1",
-                                  "modv:pollingRate": 100,
+                                  "modbus:entity": "Coil",
+                                  "modbus:quantity": 1,
+                                  "modbus:address": "00003",
+                                  "modbus:unitID": 1,
+                                  "modbus:pollingRate": 100,
                                   "contentType": "application/octet-stream"
                               }
                           ]
