@@ -37,7 +37,7 @@
     ] ;
     sh:property [
         sh:path modbus:hasFunction ;
-		sh:class modbus:FunctionCode ;
+		sh:class modbus:Function ;
         sh:maxCount 1 ;
     ] ;
     sh:property [

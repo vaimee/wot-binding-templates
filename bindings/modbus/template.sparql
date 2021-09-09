@@ -18,7 +18,7 @@ template :modbus {
         <file://./bindings/modbus/index.template.html>
         st:call-template(:formTerms, ?modbusBase, ?prefix)
         st:call-template(:entityValues, ?modbusBase, ?prefix)
-        st:call-template(:codeValues, ?modbusBase, ?prefix)
+        st:call-template(:functionValues, ?modbusBase, ?prefix)
         st:call-template(:mappings, ?modbusBase, ?prefix)
     }
 }  where {
@@ -136,7 +136,7 @@ template :entityValues(?ns ?prefix){
     bind(IRI(CONCAT(STR( ?ns),"#Entity")) as ?entity)
 }
 
-template :codeValues(?ns ?prefix){
+template :functionValues(?ns ?prefix){
     format {
         """
         <tr>
@@ -156,7 +156,7 @@ template :codeValues(?ns ?prefix){
          rdfs:label ?label;
          rdfs:comment ?desc
     
-    bind(IRI(CONCAT(STR( ?ns),"#FunctionCode")) as ?funcode)
+    bind(IRI(CONCAT(STR( ?ns),"#Function")) as ?funcode)
 }
 
 template :nameValues(?ns ?prefix){
