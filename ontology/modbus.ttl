@@ -438,6 +438,7 @@ The data request field my be nonexistent (zero length) in certain kid of request
 ###  https://www.w3.org/2019/wot/modbus/errorCode#01
 <https://www.w3.org/2019/wot/modbus/errorCode#01> rdf:type owl:NamedIndividual ,
                                                            :ResponseCode ;
+                                                  :hasCodeNumber 1 ;
                                                   rdfs:comment "Function code received in the query is not recognized or allowed by slave"@en ;
                                                   rdfs:label "ILLEGAL FUNCTION"@en .
 
@@ -445,6 +446,7 @@ The data request field my be nonexistent (zero length) in certain kid of request
 ###  https://www.w3.org/2019/wot/modbus/errorCode#02
 <https://www.w3.org/2019/wot/modbus/errorCode#02> rdf:type owl:NamedIndividual ,
                                                            :ResponseCode ;
+                                                  :hasCodeNumber 2 ;
                                                   rdfs:comment "Data address of some or all the required entities are not allowed or do not exist in slave"@en ;
                                                   rdfs:label "ILLEGAL DATA ADDRESS"@en .
 
@@ -452,6 +454,7 @@ The data request field my be nonexistent (zero length) in certain kid of request
 ###  https://www.w3.org/2019/wot/modbus/errorCode#03
 <https://www.w3.org/2019/wot/modbus/errorCode#03> rdf:type owl:NamedIndividual ,
                                                            :ResponseCode ;
+                                                  :hasCodeNumber 3 ;
                                                   rdfs:comment "Value is not accepted by slave"@en ;
                                                   rdfs:label "ILLEGAL DATA VALUE"@en .
 
@@ -459,6 +462,7 @@ The data request field my be nonexistent (zero length) in certain kid of request
 ###  https://www.w3.org/2019/wot/modbus/errorCode#04
 <https://www.w3.org/2019/wot/modbus/errorCode#04> rdf:type owl:NamedIndividual ,
                                                            :ResponseCode ;
+                                                  :hasCodeNumber 4 ;
                                                   rdfs:comment "An unrecoverable error occurred while the slave was attempting to perform the requested action"@en ;
                                                   rdfs:label "SLAVEDEVICE FAILURE" .
 
@@ -466,6 +470,7 @@ The data request field my be nonexistent (zero length) in certain kid of request
 ###  https://www.w3.org/2019/wot/modbus/errorCode#05
 <https://www.w3.org/2019/wot/modbus/errorCode#05> rdf:type owl:NamedIndividual ,
                                                            :ResponseCode ;
+                                                  :hasCodeNumber 5 ;
                                                   rdfs:comment "The server has accepted the request and is processing it, but a long duration of time will be required to do so. This response is returned to prevent a timeout error from occurring in the client. The client can next issue a Poll Program Complete  message to determine if processing is completed"@en ;
                                                   rdfs:label "ACKNOWLEDGE" .
 
@@ -473,6 +478,7 @@ The data request field my be nonexistent (zero length) in certain kid of request
 ###  https://www.w3.org/2019/wot/modbus/errorCode#06
 <https://www.w3.org/2019/wot/modbus/errorCode#06> rdf:type owl:NamedIndividual ,
                                                            :ResponseCode ;
+                                                  :hasCodeNumber 6 ;
                                                   rdfs:comment "Slave is engaged in processing a long-duration command. Master should retry later "@en ;
                                                   rdfs:label "SLAVEDEVICE BUISY"@en .
 
