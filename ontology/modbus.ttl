@@ -232,6 +232,7 @@ xsd:string rdf:type owl:Class .
 ###  https://www.w3.org/2019/wot/modbus#Data_Field
 :Data_Field rdf:type owl:Class ;
             rdfs:subClassOf :Payload ;
+            rdfs:comment "The Data Field of a Modbus messages can contain different kind of informations: additional informations that the server uses to take the action defined by the function code (data request), informations regarded the performed action requested by the client (data response), informations about the reason of the error (exception code)."@en ;
             rdfs:label "Data Field" .
 
 
@@ -263,13 +264,16 @@ xsd:string rdf:type owl:Class .
                                           )
                               ] ;
           rdfs:subClassOf :Function_Field ;
-          rdfs:comment "Function Code class represents the value of the function field in a Modbus frame. Each operation identified with a code also have a corresponding human readable name."@en ;
+          rdfs:comment "Function code identifies the operation requested by client, indicates to the server what kind of action to perform. For a normal response, the server simply echoes to the request the original function code."@en ;
           rdfs:label "function"@en .
 
 
 ###  https://www.w3.org/2019/wot/modbus#Function_Field
 :Function_Field rdf:type owl:Class ;
                 rdfs:subClassOf :Payload ;
+                rdfs:comment """Function Field class represents the value of the function in a Modbus frame. Each operation identified with a human readable name have a corresponding code.
+The response function code corresponds exactly to the request function code sent by the client when no error occurs. 
+On the contrary, the response operation is identified with an error code or exception function code corresponding to the request function code + 0x80."""@en ;
                 rdfs:label "Function Field" .
 
 
@@ -282,7 +286,7 @@ xsd:string rdf:type owl:Class .
 
 ###  https://www.w3.org/2019/wot/modbus#Payload
 :Payload rdf:type owl:Class ;
-         rdfs:comment "In a Modbus Message the content of a requested operation (sent by client to server) or of a response (elaborated by the server and sent to client) is expressed with a specific code, that could be a normal one ( function code) or an exception one (exception code)."@en ;
+         rdfs:comment "In a Modbus message the content of a requested operation (sent by client to server) or of a response (elaborated by server and sent to client) is expressed with a specific code. This code is made by two field: function field and data field."@en ;
          rdfs:label "Payload"@en .
 
 
@@ -312,38 +316,45 @@ xsd:string rdf:type owl:Class .
                                               )
                                   ] ;
               rdfs:subClassOf :Data_Field ;
-              rdfs:comment "In case of Exception Response, the server returns an Exception Code in the data field. Exception Code defines the server condition that caused the exception. Each status identified with a code also have a corresponding human readable name."@en ;
+              rdfs:comment "For an Exception Response, the server returns an exception code as data response field. Exception code defines the server condition that caused the exception as well as the reason of the error."@en ;
               rdfs:label "exception code"@en .
 
 
 ###  https://www.w3.org/2019/wot/modbus#data_request
 :data_request rdf:type owl:Class ;
               rdfs:subClassOf :Data_Field ;
+              rdfs:comment """Data request contains additional information sent from a client to server that the server uses to take the action defined by the function code. 
+This can include items like discree and register address, the quantity of items to be handled, and the count of actual data bytes in the field.
+The data request field my be nonexistent (zero length) in certain kid of requests, in this case the server does not require any additional information. The function code alone specifies the action."""@en ;
               rdfs:label "data request" .
 
 
 ###  https://www.w3.org/2019/wot/modbus#data_response
 :data_response rdf:type owl:Class ;
                rdfs:subClassOf :Data_Field ;
+               rdfs:comment "Data response contains the informations requested by the client to the server."@en ;
                rdfs:label "data response" .
 
 
 ###  https://www.w3.org/2019/wot/modbus#erorr_code
 :erorr_code rdf:type owl:Class ;
             rdfs:subClassOf :Function_Field ;
+            rdfs:comment "In case of error, the server elaborates a response replacing the normal function code with an error code (or exception function code) corresponding to the request function code +0x80."@en ;
             rdfs:label "error code" .
 
 
 ###  https://www.w3.org/2019/wot/modbus#exception_response
 :exception_response rdf:type owl:Class ;
                     rdfs:subClassOf :Response ;
+                    rdfs:comment "Response sent by server to client when error occurs." ;
                     rdfs:label "exception response" .
 
 
 ###  https://www.w3.org/2019/wot/modbus#normal_response
 :normal_response rdf:type owl:Class ;
                  rdfs:subClassOf :Response ;
-                 rdfs:label "normal response" .
+                 rdfs:label "Response sent by server to client when no error occurs." ,
+                            "normal response" .
 
 
 #################################################################
