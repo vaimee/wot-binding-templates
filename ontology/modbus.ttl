@@ -191,10 +191,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
 #    Classes
 #################################################################
 
-###  http://www.w3.org/2001/XMLSchema#string
-xsd:string rdf:type owl:Class .
-
-
 ###  https://www.w3.org/2019/wot/modbus#Data_Field
 :Data_Field rdf:type owl:Class ;
             rdfs:subClassOf :Payload ;
