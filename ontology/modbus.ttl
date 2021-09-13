@@ -95,7 +95,7 @@ binding:assignment rdf:type owl:AnnotationProperty .
 ###  https://www.w3.org/2019/wot/modbus#hasExceptionFunction
 :hasExceptionFunction rdf:type owl:ObjectProperty ;
                       rdfs:domain :exception_response ;
-                      rdfs:range :erorr_code ;
+                      rdfs:range :exception_function ;
                       rdfs:label "hasExceptionFunction" .
 
 
@@ -141,7 +141,7 @@ binding:assignment rdf:type owl:AnnotationProperty .
 :hasCodeNumber rdf:type owl:DatatypeProperty ;
                rdfs:domain :Function ,
                            :ResponseCode ,
-                           :erorr_code ;
+                           :exception_function ;
                rdfs:range xsd:integer ;
                rdfs:comment "Specifies the Modbus function/exception code number"@en ;
                rdfs:label "hasCodeNumber"@en .
@@ -302,11 +302,11 @@ The data request field my be nonexistent (zero length) in certain kid of request
                rdfs:label "data response" .
 
 
-###  https://www.w3.org/2019/wot/modbus#erorr_code
-:erorr_code rdf:type owl:Class ;
-            rdfs:subClassOf :Function_Field ;
-            rdfs:comment "In case of error, the server elaborates a response replacing the normal function code with an error code (or exception function code) corresponding to the request function code +0x80."@en ;
-            rdfs:label "error code" .
+###  https://www.w3.org/2019/wot/modbus#exception_function
+:exception_function rdf:type owl:Class ;
+                    rdfs:subClassOf :Function_Field ;
+                    rdfs:comment "In case of error, the server elaborates a response replacing the normal function code with an exception function code (or error code) corresponding to the request function code +0x80."@en ;
+                    rdfs:label "exception function" .
 
 
 ###  https://www.w3.org/2019/wot/modbus#exception_response
