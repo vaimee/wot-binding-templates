@@ -355,6 +355,7 @@ The data request field my be nonexistent (zero length) in certain kid of request
 :excReadDeviceIdentification rdf:type owl:NamedIndividual ,
                                       :exception_function ;
                              :hasCodeNumber 171 ;
+                             rdfs:comment "Exception function of Read Device Identification function."@en ;
                              rdfs:label "Exception Read Device Identification"@en .
 
 
@@ -362,6 +363,7 @@ The data request field my be nonexistent (zero length) in certain kid of request
 :excReadDiscreteInputs rdf:type owl:NamedIndividual ,
                                 :exception_function ;
                        :hasCodeNumber 130 ;
+                       rdfs:comment "Exception function of Read Discete Input function."@en ;
                        rdfs:label "Exception Read Discrete Inputs"@en .
 
 
@@ -369,6 +371,7 @@ The data request field my be nonexistent (zero length) in certain kid of request
 :excReadMultipleHoldingRegisters rdf:type owl:NamedIndividual ,
                                           :exception_function ;
                                  :hasCodeNumber 131 ;
+                                 rdfs:comment "Exception function of Read Multiple Holding Registers function."@en ;
                                  rdfs:label "Exception Read Multiple Holding Registers"@en .
 
 
@@ -376,6 +379,7 @@ The data request field my be nonexistent (zero length) in certain kid of request
 :excReadMultipleInputRegisters rdf:type owl:NamedIndividual ,
                                         :exception_function ;
                                :hasCodeNumber 132 ;
+                               rdfs:comment "Exception function of Read Multiple Input Registers function."@en ;
                                rdfs:label "Exception Read Multiple Input Registers"@en .
 
 
@@ -383,6 +387,7 @@ The data request field my be nonexistent (zero length) in certain kid of request
 :excReadSingleCoils rdf:type owl:NamedIndividual ,
                              :exception_function ;
                     :hasCodeNumber 129 ;
+                    rdfs:comment "Exception function of Read Single Coils function."@en ;
                     rdfs:label "Exception Read Single Coils"@en .
 
 
@@ -390,6 +395,7 @@ The data request field my be nonexistent (zero length) in certain kid of request
 :excWriteMultipleCoils rdf:type owl:NamedIndividual ,
                                 :exception_function ;
                        :hasCodeNumber 143 ;
+                       rdfs:comment "Exception function of Write Multiple Coils function."@en ;
                        rdfs:label "Exception Write Multiple Coils"@en .
 
 
@@ -397,6 +403,7 @@ The data request field my be nonexistent (zero length) in certain kid of request
 :excWriteMultipleHoldiungRegisters rdf:type owl:NamedIndividual ,
                                             :exception_function ;
                                    :hasCodeNumber 144 ;
+                                   rdfs:comment "Exception function of Write Multiple Holding Register function."@en ;
                                    rdfs:label "Exception Write Multiple Holding Register"@en .
 
 
@@ -404,6 +411,7 @@ The data request field my be nonexistent (zero length) in certain kid of request
 :excWriteSingleCoil rdf:type owl:NamedIndividual ,
                              :exception_function ;
                     :hasCodeNumber 133 ;
+                    rdfs:comment "Exception function of Write Single Coil function."@en ;
                     rdfs:label "Exception Write Single Coil"@en .
 
 
@@ -411,6 +419,7 @@ The data request field my be nonexistent (zero length) in certain kid of request
 :excWriteSingleHoldingRegister rdf:type owl:NamedIndividual ,
                                         :exception_function ;
                                :hasCodeNumber 134 ;
+                               rdfs:comment "Exception function of Write Single Holding Register function."@en ;
                                rdfs:label "Exception Write Single Holding Register"@en .
 
 
@@ -420,7 +429,7 @@ The data request field my be nonexistent (zero length) in certain kid of request
           :readFrom :Coil ;
           :hasCodeNumber 1 ;
           rdfs:comment "Read a single coil (i.e. boolean/bit access) value. Usually in the address range 00001-09999"@en ;
-          rdfs:label "Read Single Coils"@en .
+          rdfs:label "Read Single Coil"@en .
 
 
 ###  https://www.w3.org/2019/wot/modbus#readDeviceIdentification
