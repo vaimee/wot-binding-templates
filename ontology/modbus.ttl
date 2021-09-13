@@ -187,10 +187,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
                             rdfs:label "hasZeroBasedAddressingFlag"@en .
 
 
-###  https://www.w3.org/2019/wot/modbus#writeValue
-:writeValue rdf:type owl:DatatypeProperty .
-
-
 #################################################################
 #    Classes
 #################################################################
