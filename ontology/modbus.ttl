@@ -46,18 +46,8 @@ vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
 schema:name rdf:type owl:AnnotationProperty .
 
 
-###  http://www.ontology-of-units-of-measure.org/resource/om-2/usesUnit
-om:usesUnit rdf:type owl:AnnotationProperty .
-
-
 ###  https://www.w3.org/2019/wot/binding#assignment
 binding:assignment rdf:type owl:AnnotationProperty .
-
-
-###  https://www.w3.org/2019/wot/modbus#writeValue
-:writeValue rdf:type owl:AnnotationProperty ;
-            rdfs:range xsd:integer ;
-            rdfs:domain :RequestOption .
 
 
 #################################################################
@@ -161,7 +151,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
 :hasPollingTime rdf:type owl:DatatypeProperty ;
                 rdfs:domain :Request ;
                 rdfs:range xsd:integer ;
-                om:usesUnit om:milliseconds ;
                 rdfs:comment "Modbus TCP maximum polling rate. The Modbus specification does not define a maximum or minimum allowed polling rate, however specific implementations might introduce such limits. Defined as integer of milliseconds." ;
                 rdfs:label "hasPollingTime"@en .
 
@@ -178,7 +167,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
 :hasTimeout rdf:type owl:DatatypeProperty ;
             rdfs:domain :Request ;
             rdfs:range xsd:integer ;
-            om:usesUnit om:milliseconds ;
             rdfs:comment "Modbus response maximum waiting time. Defines how much time the runtime should wait until it receives a reply from the device." ;
             rdfs:label "hasTimeout"@en .
 
