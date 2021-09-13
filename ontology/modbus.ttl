@@ -358,6 +358,8 @@ The data request field my be nonexistent (zero length) in certain kid of request
 ###  https://www.w3.org/2019/wot/modbus#readCoil
 :readCoil rdf:type owl:NamedIndividual ,
                    :Function ;
+          :readFrom :Coil ;
+          :hasCodeNumber 1 ;
           rdfs:comment "Read a single coil (i.e. boolean/bit access) value. Usually in the address range 00001-09999"@en ;
           rdfs:label "Read Single Coils"@en .
 
@@ -365,6 +367,7 @@ The data request field my be nonexistent (zero length) in certain kid of request
 ###  https://www.w3.org/2019/wot/modbus#readDeviceIdentification
 :readDeviceIdentification rdf:type owl:NamedIndividual ,
                                    :Function ;
+                          :hasCodeNumber 43 ;
                           rdfs:comment "Read Device Identification for diagnostic purposes. Avaiable in the majority of Modbus implementations."@en ;
                           rdfs:label "Read Device Identification"@en .
 
@@ -372,6 +375,8 @@ The data request field my be nonexistent (zero length) in certain kid of request
 ###  https://www.w3.org/2019/wot/modbus#readDiscreteInput
 :readDiscreteInput rdf:type owl:NamedIndividual ,
                             :Function ;
+                   :readFrom :DiscreteInput ;
+                   :hasCodeNumber 2 ;
                    rdfs:comment "Read Physical Discrete Inputs (bit access). Address range 10001-19999"@en ;
                    rdfs:label "Read Discrete Inputs"@en .
 
@@ -379,6 +384,8 @@ The data request field my be nonexistent (zero length) in certain kid of request
 ###  https://www.w3.org/2019/wot/modbus#readHoldingRegisters
 :readHoldingRegisters rdf:type owl:NamedIndividual ,
                                :Function ;
+                      :readFrom :HoldingRegister ;
+                      :hasCodeNumber 3 ;
                       rdfs:comment "Read Multiple Holding Registers (16 bit access). Address range 40001-49999"@en ;
                       rdfs:label "Read Multiple Holding Registers"@en .
 
@@ -386,6 +393,8 @@ The data request field my be nonexistent (zero length) in certain kid of request
 ###  https://www.w3.org/2019/wot/modbus#readInputRegisters
 :readInputRegisters rdf:type owl:NamedIndividual ,
                              :Function ;
+                    :readFrom :InputRegister ;
+                    :hasCodeNumber 3 ;
                     rdfs:comment "Read Multiple Physical Input Registers (16 bits). Address range 30001-39999"@en ;
                     rdfs:label "Read Multiple Input Registers"@en .
 
@@ -393,6 +402,8 @@ The data request field my be nonexistent (zero length) in certain kid of request
 ###  https://www.w3.org/2019/wot/modbus#writeMultipleCoils
 :writeMultipleCoils rdf:type owl:NamedIndividual ,
                              :Function ;
+                    :writesOn :Coil ;
+                    :hasCodeNumber 15 ;
                     rdfs:comment "Write Multiple Physical Coils (internal bits). Address range 00001-09999"@en ;
                     rdfs:label "Write Multiple Coils"@en .
 
@@ -400,6 +411,8 @@ The data request field my be nonexistent (zero length) in certain kid of request
 ###  https://www.w3.org/2019/wot/modbus#writeMultipleHoldingRegisters
 :writeMultipleHoldingRegisters rdf:type owl:NamedIndividual ,
                                         :Function ;
+                               :writesOn :HoldingRegister ;
+                               :hasCodeNumber 16 ;
                                rdfs:comment "Write Multiple Holding Registers (output registers, 16 bit). Address range 40001-49999"@en ;
                                rdfs:label "Write Multiple Holding Registers"@en .
 
@@ -407,6 +420,8 @@ The data request field my be nonexistent (zero length) in certain kid of request
 ###  https://www.w3.org/2019/wot/modbus#writeSingleCoil
 :writeSingleCoil rdf:type owl:NamedIndividual ,
                           :Function ;
+                 :writesOn :Coil ;
+                 :hasCodeNumber 5 ;
                  rdfs:comment "Write Single Physical Coil (internal bit). Address range 00001-09999"@en ;
                  rdfs:label "Write Single Coil"@en .
 
@@ -414,6 +429,8 @@ The data request field my be nonexistent (zero length) in certain kid of request
 ###  https://www.w3.org/2019/wot/modbus#writeSingleHoldingRegister
 :writeSingleHoldingRegister rdf:type owl:NamedIndividual ,
                                      :Function ;
+                            :writesOn :HoldingRegister ;
+                            :hasCodeNumber 6 ;
                             rdfs:comment "Write Single HoldingRegister (internal bits). Address range 40001-49999"@en ;
                             rdfs:label "Write Single Holding Register"@en .
 
