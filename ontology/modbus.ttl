@@ -229,6 +229,11 @@ binding:assignment rdf:type owl:AnnotationProperty .
 xsd:string rdf:type owl:Class .
 
 
+###  https://www.w3.org/2019/wot/modbus#Data_Field
+:Data_Field rdf:type owl:Class ;
+            rdfs:subClassOf :Payload .
+
+
 ###  https://www.w3.org/2019/wot/modbus#Entity
 :Entity rdf:type owl:Class ;
         owl:equivalentClass [ rdf:type owl:Class ;
@@ -256,9 +261,14 @@ xsd:string rdf:type owl:Class .
                                             <https://www.w3.org/2019/wot/modbus/functionCode#writeSingleHoldingRegister>
                                           )
                               ] ;
-          rdfs:subClassOf :Payload ;
+          rdfs:subClassOf :Function_Field ;
           rdfs:comment "Function Code class represents the value of the function field in a Modbus frame. Each operation identified with a code also have a corresponding human readable name."@en ;
           rdfs:label "Function"@en .
+
+
+###  https://www.w3.org/2019/wot/modbus#Function_Field
+:Function_Field rdf:type owl:Class ;
+                rdfs:subClassOf :Payload .
 
 
 ###  https://www.w3.org/2019/wot/modbus#Message
@@ -299,9 +309,24 @@ xsd:string rdf:type owl:Class .
                                                 <https://www.w3.org/2019/wot/modbus/errorCode#06>
                                               )
                                   ] ;
-              rdfs:subClassOf :Payload ;
+              rdfs:subClassOf :Data_Field ;
               rdfs:comment "In case of Exception Response, the server returns an Exception Code in the data field. Exception Code defines the server condition that caused the exception. Each status identified with a code also have a corresponding human readable name."@en ;
               rdfs:label "Exception Code"@en .
+
+
+###  https://www.w3.org/2019/wot/modbus#data_request
+:data_request rdf:type owl:Class ;
+              rdfs:subClassOf :Data_Field .
+
+
+###  https://www.w3.org/2019/wot/modbus#data_response
+:data_response rdf:type owl:Class ;
+               rdfs:subClassOf :Data_Field .
+
+
+###  https://www.w3.org/2019/wot/modbus#erorr_code
+:erorr_code rdf:type owl:Class ;
+            rdfs:subClassOf :Function_Field .
 
 
 ###  https://www.w3.org/2019/wot/modbus#exception_response
