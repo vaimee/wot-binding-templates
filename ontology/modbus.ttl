@@ -72,22 +72,66 @@ binding:assignment rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
+###  https://www.w3.org/2019/wot/modbus#hasDataRequest
+:hasDataRequest rdf:type owl:ObjectProperty ;
+                rdfs:domain :Request ;
+                rdfs:range :data_request ;
+                rdfs:label "hasDataRequest" .
+
+
+###  https://www.w3.org/2019/wot/modbus#hasDataResponse
+:hasDataResponse rdf:type owl:ObjectProperty ;
+                 rdfs:domain :normal_response ;
+                 rdfs:range :data_response ;
+                 rdfs:label "hasDataResponse" .
+
+
 ###  https://www.w3.org/2019/wot/modbus#hasEntity
 :hasEntity rdf:type owl:ObjectProperty ;
            rdfs:domain :Request ;
            rdfs:range :Entity ;
            rdfs:comment "A registry type to let the runtime automatically detect the right function code"@en ;
            rdfs:isDefinedBy <https://www.w3.org/2019/wot/modbus> ;
-           rdfs:label "Entity"@en .
+           rdfs:label "hasEntity" .
+
+
+###  https://www.w3.org/2019/wot/modbus#hasExceptionCode
+:hasExceptionCode rdf:type owl:ObjectProperty ;
+                  rdfs:domain :exception_response ;
+                  rdfs:range :ResponseCode ;
+                  rdfs:label "hasExceptionCode" .
+
+
+###  https://www.w3.org/2019/wot/modbus#hasExceptionFunction
+:hasExceptionFunction rdf:type owl:ObjectProperty ;
+                      rdfs:domain :exception_response ;
+                      rdfs:range :erorr_code ;
+                      rdfs:label "hasExceptionFunction" .
 
 
 ###  https://www.w3.org/2019/wot/modbus#hasFunction
 :hasFunction rdf:type owl:ObjectProperty ;
-             rdfs:domain :Request ;
+             rdfs:domain :Request ,
+                         :normal_response ;
              rdfs:range :Function ;
              rdfs:comment "Function Code sent by the master in every request. Specifying the desired interaction."@en ;
              rdfs:isDefinedBy <https://www.w3.org/2019/wot/modbus> ;
-             rdfs:label "Function"@en .
+             rdfs:label "hasFunction"@en .
+
+
+###  https://www.w3.org/2019/wot/modbus#readFrom
+:readFrom rdf:type owl:ObjectProperty ;
+          rdfs:domain :Function ;
+          rdfs:range :Entity ;
+          owl:propertyDisjointWith :writesOn ;
+          rdfs:label "readFrom" .
+
+
+###  https://www.w3.org/2019/wot/modbus#writesOn
+:writesOn rdf:type owl:ObjectProperty ;
+          rdfs:domain :Function ;
+          rdfs:range :Entity ;
+          rdfs:label "writesOn" .
 
 
 #################################################################
