@@ -355,6 +355,69 @@ The data request field my be nonexistent (zero length) in certain kid of request
                rdfs:label "Input Register"@en .
 
 
+###  https://www.w3.org/2019/wot/modbus#excReadDeviceIdentification
+:excReadDeviceIdentification rdf:type owl:NamedIndividual ,
+                                      :exception_function ;
+                             :hasCodeNumber 171 ;
+                             rdfs:label "Exception Read Device Identification"@en .
+
+
+###  https://www.w3.org/2019/wot/modbus#excReadDiscreteInputs
+:excReadDiscreteInputs rdf:type owl:NamedIndividual ,
+                                :exception_function ;
+                       :hasCodeNumber 130 ;
+                       rdfs:label "Exception Read Discrete Inputs"@en .
+
+
+###  https://www.w3.org/2019/wot/modbus#excReadMultipleHoldingRegisters
+:excReadMultipleHoldingRegisters rdf:type owl:NamedIndividual ,
+                                          :exception_function ;
+                                 :hasCodeNumber 131 ;
+                                 rdfs:label "Exception Read Multiple Holding Registers"@en .
+
+
+###  https://www.w3.org/2019/wot/modbus#excReadMultipleInputRegisters
+:excReadMultipleInputRegisters rdf:type owl:NamedIndividual ,
+                                        :exception_function ;
+                               :hasCodeNumber 132 ;
+                               rdfs:label "Exception Read Multiple Input Registers"@en .
+
+
+###  https://www.w3.org/2019/wot/modbus#excReadSingleCoils
+:excReadSingleCoils rdf:type owl:NamedIndividual ,
+                             :exception_function ;
+                    :hasCodeNumber 129 ;
+                    rdfs:label "Exception Read Single Coils"@en .
+
+
+###  https://www.w3.org/2019/wot/modbus#excWriteMultipleCoils
+:excWriteMultipleCoils rdf:type owl:NamedIndividual ,
+                                :exception_function ;
+                       :hasCodeNumber 143 ;
+                       rdfs:label "Exception Write Multiple Coils"@en .
+
+
+###  https://www.w3.org/2019/wot/modbus#excWriteMultipleHoldiungRegisters
+:excWriteMultipleHoldiungRegisters rdf:type owl:NamedIndividual ,
+                                            :exception_function ;
+                                   :hasCodeNumber 144 ;
+                                   rdfs:label "Exception Write Multiple Holding Register"@en .
+
+
+###  https://www.w3.org/2019/wot/modbus#excWriteSingleCoil
+:excWriteSingleCoil rdf:type owl:NamedIndividual ,
+                             :exception_function ;
+                    :hasCodeNumber 133 ;
+                    rdfs:label "Exception Write Single Coil"@en .
+
+
+###  https://www.w3.org/2019/wot/modbus#excWriteSingleHoldingRegister
+:excWriteSingleHoldingRegister rdf:type owl:NamedIndividual ,
+                                        :exception_function ;
+                               :hasCodeNumber 134 ;
+                               rdfs:label "Exception Write Single Holding Register"@en .
+
+
 ###  https://www.w3.org/2019/wot/modbus#readCoil
 :readCoil rdf:type owl:NamedIndividual ,
                    :Function ;
@@ -394,7 +457,7 @@ The data request field my be nonexistent (zero length) in certain kid of request
 :readInputRegisters rdf:type owl:NamedIndividual ,
                              :Function ;
                     :readFrom :InputRegister ;
-                    :hasCodeNumber 3 ;
+                    :hasCodeNumber 4 ;
                     rdfs:comment "Read Multiple Physical Input Registers (16 bits). Address range 30001-39999"@en ;
                     rdfs:label "Read Multiple Input Registers"@en .
 
