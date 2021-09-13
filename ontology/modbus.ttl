@@ -175,7 +175,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 ###  https://www.w3.org/2019/wot/modbus#hasCodeNumber
 :hasCodeNumber rdf:type owl:DatatypeProperty ;
-               rdfs:domain :Code ;
                rdfs:range xsd:integer ;
                rdfs:comment "A Modbus function/exception code number"@en ;
                rdfs:label "hasCodeNumber"@en .
@@ -228,10 +227,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 ###  http://www.w3.org/2001/XMLSchema#string
 xsd:string rdf:type owl:Class .
-
-
-###  https://www.w3.org/2019/wot/modbus#Code
-:Code rdf:type owl:Class .
 
 
 ###  https://www.w3.org/2019/wot/modbus#Entity
