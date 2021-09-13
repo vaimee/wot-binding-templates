@@ -355,11 +355,6 @@ The data request field my be nonexistent (zero length) in certain kid of request
                rdfs:label "Input Register"@en .
 
 
-###  https://www.w3.org/2019/wot/modbus#encodingOption
-:encodingOption rdf:type owl:NamedIndividual ,
-                         xsd:string .
-
-
 ###  https://www.w3.org/2019/wot/modbus#readCoil
 :readCoil rdf:type owl:NamedIndividual ;
           rdfs:comment "Read a single coil (i.e. boolean/bit access) value. Usually in the address range 00001-09999"@en ;
