@@ -301,7 +301,7 @@ The data request field my be nonexistent (zero length) in certain kid of request
 ###  https://www.w3.org/2019/wot/modbus#exception_function
 :exception_function rdf:type owl:Class ;
                     rdfs:subClassOf :Function_Field ;
-                    rdfs:comment "In case of error, the server elaborates a response replacing the normal function code with an exception function code (or error code) corresponding to the request function code +0x80."@en ;
+                    rdfs:comment "In case of error, the server replaces the normal function code with an exception function code (or error code) corresponding to the request function code +0x80."@en ;
                     rdfs:label "exception function" .
 
 
