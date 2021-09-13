@@ -54,9 +54,7 @@ om:usesUnit rdf:type owl:AnnotationProperty .
 binding:assignment rdf:type owl:AnnotationProperty .
 
 
-###  https://www.w3.org/2019/wot/modbus#
-
-
+###  https://www.w3.org/2019/wot/modbus#writeValue
 :writeValue rdf:type owl:AnnotationProperty ;
             rdfs:range xsd:integer ;
             rdfs:domain :RequestOption .
@@ -79,15 +77,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
                 rdfs:domain :Request .
 
 
-###  https://www.w3.org/2019/wot/modbus#entity
-:hasEntity rdf:type owl:ObjectProperty ;
-        rdfs:domain :Request ;
-        rdfs:range :Entity ;
-        rdfs:comment "A registry type to let the runtime automatically detect the right function code"@en ;
-        rdfs:isDefinedBy <https://www.w3.org/2019/wot/modbus> ;
-        rdfs:label "Entity"@en .
-
-
 ###  https://www.w3.org/2019/wot/modbus#firstDWordLow
 :firstDWordLow rdf:type owl:ObjectProperty ;
                rdfs:domain :Request .
@@ -96,15 +85,6 @@ binding:assignment rdf:type owl:AnnotationProperty .
 ###  https://www.w3.org/2019/wot/modbus#firstWordLow
 :firstWordLow rdf:type owl:ObjectProperty ;
               rdfs:domain :Request .
-
-
-###  https://www.w3.org/2019/wot/modbus#function
-:hasFunction rdf:type owl:ObjectProperty ;
-          rdfs:domain :Request ;
-          rdfs:range :Function ;
-          rdfs:comment "Function Code sent by the master in every request. Specifying the desired interaction."@en ;
-          rdfs:isDefinedBy <https://www.w3.org/2019/wot/modbus> ;
-          rdfs:label "Function"@en .
 
 
 ###  https://www.w3.org/2019/wot/modbus#functionCode
@@ -117,6 +97,24 @@ binding:assignment rdf:type owl:AnnotationProperty .
 :functionName rdf:type owl:ObjectProperty ;
               rdfs:domain :Function ;
               rdfs:label "Function name of a function Code"@en .
+
+
+###  https://www.w3.org/2019/wot/modbus#hasEntity
+:hasEntity rdf:type owl:ObjectProperty ;
+           rdfs:domain :Request ;
+           rdfs:range :Entity ;
+           rdfs:comment "A registry type to let the runtime automatically detect the right function code"@en ;
+           rdfs:isDefinedBy <https://www.w3.org/2019/wot/modbus> ;
+           rdfs:label "Entity"@en .
+
+
+###  https://www.w3.org/2019/wot/modbus#hasFunction
+:hasFunction rdf:type owl:ObjectProperty ;
+             rdfs:domain :Request ;
+             rdfs:range :Function ;
+             rdfs:comment "Function Code sent by the master in every request. Specifying the desired interaction."@en ;
+             rdfs:isDefinedBy <https://www.w3.org/2019/wot/modbus> ;
+             rdfs:label "Function"@en .
 
 
 ###  https://www.w3.org/2019/wot/modbus#length
@@ -213,15 +211,15 @@ binding:assignment rdf:type owl:AnnotationProperty .
            rdfs:label "hasUnitID"@en .
 
 
-###  https://www.w3.org/2019/wot/modbus#writeValue
-:writeValue rdf:type owl:DatatypeProperty .
-
-
 ###  https://www.w3.org/2019/wot/modbus#hasZeroBasedAddressingFlag
 :hasZeroBasedAddressingFlag rdf:type owl:DatatypeProperty ;
                             rdfs:range xsd:boolean ;
                             rdfs:comment "Modbus implementations can differ in the way addressing works, as the first coil/register can be either referred to as True or False."@en ;
                             rdfs:label "hasZeroBasedAddressingFlag"@en .
+
+
+###  https://www.w3.org/2019/wot/modbus#writeValue
+:writeValue rdf:type owl:DatatypeProperty .
 
 
 #################################################################
@@ -230,6 +228,10 @@ binding:assignment rdf:type owl:AnnotationProperty .
 
 ###  http://www.w3.org/2001/XMLSchema#string
 xsd:string rdf:type owl:Class .
+
+
+###  https://www.w3.org/2019/wot/modbus#Code
+:Code rdf:type owl:Class .
 
 
 ###  https://www.w3.org/2019/wot/modbus#Entity
@@ -305,6 +307,16 @@ xsd:string rdf:type owl:Class .
               rdfs:subClassOf :Payload ;
               rdfs:comment "In case of Exception Response, the server returns an Exception Code in the data field. Exception Code defines the server condition that caused the exception. Each status identified with a code also have a corresponding human readable name."@en ;
               rdfs:label "Exception Code"@en .
+
+
+###  https://www.w3.org/2019/wot/modbus#exception_response
+:exception_response rdf:type owl:Class ;
+                    rdfs:subClassOf :Response .
+
+
+###  https://www.w3.org/2019/wot/modbus#normal_response
+:normal_response rdf:type owl:Class ;
+                 rdfs:subClassOf :Response .
 
 
 #################################################################
