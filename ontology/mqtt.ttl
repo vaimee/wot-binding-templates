@@ -1,106 +1,449 @@
 @prefix : <https://www.w3.org/2019/wot/mqtt#> .
+@prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix schema: <http://schema.org/> .
 @prefix vann: <http://purl.org/vocab/vann/> .
-@prefix dct: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
 @base <https://www.w3.org/2019/wot/mqtt> .
 
-<> rdf:type owl:Ontology ;
-   rdfs:label "MQTT in RDF"@en ;
-   rdfs:comment "Vocabulary to represent MQTT packets in RDF."@en ;
-   vann:preferredNamespacePrefix "mqv" ;
-   vann:preferredNamespaceUri : ;
-   dct:author _:michael ;
-   dct:contributor _:ege, _:seb, <https://www.vcharpenay.link/#me> .
+<https://www.w3.org/2019/wot/mqtt> rdf:type owl:Ontology ;
+                                    dct:author [ ] ;
+dct:contributor [ ] ,
+[ ] ;
+vann:preferredNamespacePrefix "mqv" ;
+vann:preferredNamespaceUri : ;
+rdfs:comment "Vocabulary to represent MQTT packets in RDF."@en ;
+rdfs:label "MQTT in RDF"@en .
 
-<https://www.vcharpenay.link/#me> a schema:Person ;
-                                  schema:name "Victor Charpenay" ;
-                                  schema:affiliation _:siemens .
+#################################################################
+#    Annotation properties
+#################################################################
 
-_:ege a schema:Person ;
-      schema:name "Ege Korkan" ;
-      schema:affiliation _:siemens .
+###  http://purl.org/dc/terms/author
+dct:author rdf:type owl:AnnotationProperty .
 
-_:michael a schema:Person ;
-          schema:name "Michael Koster" ;
-          schema:affiliation _:smartthings .
 
-_:seb a schema:Person ;
-      schema:name "Sebastian Käbisch" ;
-      schema:affiliation _:siemens .
+###  http://purl.org/dc/terms/contributor
+dct:contributor rdf:type owl:AnnotationProperty .
 
-_:siemens a schema:Organization ;
-          schema:name "Siemens AG" ;
-          schema:url "https://www.siemens.com/" .
 
-_:smartthings a schema:Organization ;
-              schema:name "SmartThings" ;
-              schema:url "https://www.smartthings.com/" .
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
 
-:payload rdf:type owl:ObjectProperty ;
-         rdfs:isDefinedBy <> ;
-         rdfs:label "payload"@en ;
-         rdfs:comment "Some MQTT Control Packets contain a Payload as the final part of the packet. In the PUBLISH packet this is the Application Message."@en ;
-         schema:domainIncludes :ControlPacket .
 
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
+
+
+###  http://schema.org/affiliation
+schema:affiliation rdf:type owl:AnnotationProperty .
+
+
+###  http://schema.org/domainIncludes
+schema:domainIncludes rdf:type owl:AnnotationProperty .
+
+
+###  http://schema.org/name
+schema:name rdf:type owl:AnnotationProperty .
+
+
+###  http://schema.org/url
+schema:url rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://www.w3.org/2019/wot/mqtt#hasControlPacketType
+:hasControlPacketType rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  https://www.w3.org/2019/wot/mqtt#hasGrantedQoS
+:hasGrantedQoS rdf:type owl:ObjectProperty ;
+               rdfs:domain :SUBACK_payload ;
+               rdfs:range :granted .
+
+
+###  https://www.w3.org/2019/wot/mqtt#hasPayload
+:hasPayload rdf:type owl:ObjectProperty .
+
+
+###  https://www.w3.org/2019/wot/mqtt#hasRequestedQoS
+:hasRequestedQoS rdf:type owl:ObjectProperty ;
+                 rdfs:domain :SUBSCRIBE_payload ;
+                 rdfs:range :requested .
+
+
+###  https://www.w3.org/2019/wot/mqtt#subscribeTopic
+:subscribeTopic rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:domain :SUBSCRIBE_payload ;
+                rdfs:range :Topic .
+
+
+###  https://www.w3.org/2019/wot/mqtt#unsubscribeTopic
+:unsubscribeTopic rdf:type owl:ObjectProperty ;
+                  rdfs:domain :UNSUBSCRIBE_payload ;
+                  rdfs:range :Topic .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://www.w3.org/2019/wot/mqtt#clientID
+:clientID rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :payload_properties ;
+          rdfs:domain :CONNECT_payload ;
+          rdfs:range xsd:string .
+
+
+###  https://www.w3.org/2019/wot/mqtt#enumeration
+:enumeration rdf:type owl:DatatypeProperty ;
+             rdfs:domain :ControlPacket_Type ;
+             rdfs:range xsd:int .
+
+
+###  https://www.w3.org/2019/wot/mqtt#fixedHeaderFlag
 :fixedHeaderFlag rdf:type owl:DatatypeProperty ;
-                 rdfs:isDefinedBy <> ;
-                 rdfs:label "fixedHeaderFlag"@en ;
+                 rdfs:domain :MQTT_ControlMessage ;
+                 rdfs:range xsd:int ;
+                 schema:domainIncludes :ControlPacket ;
                  rdfs:comment "Each MQTT Control Packet contains a Fixed Header."@en ;
-                 schema:domainIncludes :ControlPacket .
+                 rdfs:isDefinedBy <https://www.w3.org/2019/wot/mqtt> ;
+                 rdfs:label "fixedHeaderFlag"@en .
 
-:variableHeaderFlag rdf:type owl:DatatypeProperty ;
-                    rdfs:isDefinedBy <> ;
-                    rdfs:label "variableHeaderFlag"@en ;
-                    rdfs:comment "Some types of MQTT Control Packet contain a Variable Header component. It resides between the Fixed Header and the Payload. The content of the Variable Header varies depending on the packet type."@en ;
-                    schema:domainIncludes :ControlPacket .
 
+###  https://www.w3.org/2019/wot/mqtt#grantedQoS
+:grantedQoS rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :payload_properties ;
+            rdfs:domain :granted ;
+            rdfs:range xsd:int .
+
+
+###  https://www.w3.org/2019/wot/mqtt#hasDUPFlag
 :hasDUPFlag rdf:type owl:DatatypeProperty ;
-            rdfs:isDefinedBy <> ;
             rdfs:subPropertyOf :fixedHeaderFlag ;
-            rdfs:label "hasDUPFlag"@en ;
+            schema:domainIncludes :SUBSCRIBEPacket ;
             rdfs:comment "If the DUP flag is set, it indicates that this might be re-delivery of an earlier attempt to send the packet."@en ;
-            schema:domainIncludes :SUBSCRIBEPacket .
+            rdfs:isDefinedBy <https://www.w3.org/2019/wot/mqtt> ;
+            rdfs:label "hasDUPFlag"@en .
 
+
+###  https://www.w3.org/2019/wot/mqtt#hasQoSFlag
 :hasQoSFlag rdf:type owl:DatatypeProperty ;
-            rdfs:isDefinedBy <> ;
             rdfs:subPropertyOf :fixedHeaderFlag ;
-            rdfs:label "hasQoSFlag"@en ;
+            schema:domainIncludes :SUBSCRIBEPacket ;
             rdfs:comment "This field indicates the level of assurance for delivery of an Application Message."@en ;
-            schema:domainIncludes :SUBSCRIBEPacket .
+            rdfs:isDefinedBy <https://www.w3.org/2019/wot/mqtt> ;
+            rdfs:label "hasQoSFlag"@en .
 
+
+###  https://www.w3.org/2019/wot/mqtt#hasRETAINFlag
 :hasRETAINFlag rdf:type owl:DatatypeProperty ;
-               rdfs:isDefinedBy <> ;
                rdfs:subPropertyOf :fixedHeaderFlag ;
-               rdfs:label "hasRETAINFlag"@en ;
+               schema:domainIncludes :SUBSCRIBEPacket ;
                rdfs:comment "If the RETAIN flag is set to 1 in a PUBLISH packet sent by a Client to a Server, the Server must replace any existing retained message for this topic and store the Application Message, so that it can be delivered to future subscribers whose subscriptions match its Topic Name."@en ;
-               schema:domainIncludes :SUBSCRIBEPacket .
+               rdfs:isDefinedBy <https://www.w3.org/2019/wot/mqtt> ;
+               rdfs:label "hasRETAINFlag"@en .
 
-:ControlPacket rdf:type owl:Class ;
-               rdfs:isDefinedBy <> ;
-               rdfs:label "ControlPacket"@en ;
-               rdfs:comment "An MQTT Control Packet consists of up to three parts: fixed header (prsesent in all Control Packets), variable header, payload"@en .
 
-:PUBLISHPacket rdf:type owl:Class ;
-               rdfs:isDefinedBy <> ;
-               rdfs:subClassOf :ControlPacket ;
-               rdfs:label "PUBLISHPacket"@en ;
-               rdfs:comment "A PUBLISH packet is sent from a Client to a Server or from a Server to a Client to transport an Application Message."@en .
+###  https://www.w3.org/2019/wot/mqtt#optionalData
+:optionalData rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :payload_properties ;
+              rdfs:domain :PUBLISH_payload .
 
-:SUBSCRIBEPacket rdf:type owl:Class ;
-                 rdfs:isDefinedBy <> ;
-                 rdfs:subClassOf :ControlPacket ;
-                 rdfs:label "SUBSCRIBEPacket"@en ;
-                 rdfs:comment "The SUBSCRIBE packet is sent from the Client to the Server to create one or more Subscriptions. Each Subscription registers a Client’s interest in one or more Topics."@en .
 
-:UNSUBSCRIBEPacket rdf:type owl:Class ;
-                   rdfs:isDefinedBy <> ;
-                   rdfs:subClassOf :ControlPacket ;
-                   rdfs:label "UNSUBSCRIBEPacket"@en ;
-                   rdfs:comment "An UNSUBSCRIBE packet is sent by the Client to the Server, to unsubscribe from topics."@en .
+###  https://www.w3.org/2019/wot/mqtt#password
+:password rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :payload_properties ;
+          rdfs:domain :CONNECT_payload ;
+          rdfs:range xsd:string .
 
-# TODO other packet types?
+
+###  https://www.w3.org/2019/wot/mqtt#payload_properties
+:payload_properties rdf:type owl:DatatypeProperty .
+
+
+###  https://www.w3.org/2019/wot/mqtt#requestedQoS
+:requestedQoS rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :payload_properties ;
+              rdfs:domain :requested ;
+              rdfs:range xsd:int .
+
+
+###  https://www.w3.org/2019/wot/mqtt#topicName
+:topicName rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :payload_properties ;
+           rdfs:domain :Topic ;
+           rdfs:range xsd:string .
+
+
+###  https://www.w3.org/2019/wot/mqtt#userName
+:userName rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :payload_properties ;
+          rdfs:domain :CONNECT_payload ;
+          rdfs:range xsd:string .
+
+
+###  https://www.w3.org/2019/wot/mqtt#variableHeaderFlag
+:variableHeaderFlag rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :MQTT_ControlMessage ;
+                    rdfs:range xsd:int ;
+                    schema:domainIncludes :ControlPacket ;
+                    rdfs:comment "Some types of MQTT Control Packet contain a Variable Header component. It resides between the Fixed Header and the Payload. The content of the Variable Header varies depending on the packet type."@en ;
+                    rdfs:isDefinedBy <https://www.w3.org/2019/wot/mqtt> ;
+                    rdfs:label "variableHeaderFlag"@en .
+
+
+###  https://www.w3.org/2019/wot/mqtt#willMessage
+:willMessage rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :payload_properties ;
+             rdfs:domain :CONNECT_payload ;
+             rdfs:range xsd:string .
+
+
+###  https://www.w3.org/2019/wot/mqtt#willTopic
+:willTopic rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :payload_properties ;
+           rdfs:domain :Payload ;
+           rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://schema.org/Organization
+schema:Organization rdf:type owl:Class .
+
+
+###  http://schema.org/Person
+schema:Person rdf:type owl:Class .
+
+
+###  https://www.w3.org/2019/wot/mqtt#CONNECT_payload
+:CONNECT_payload rdf:type owl:Class ;
+                 rdfs:subClassOf :Payload .
+
+
+###  https://www.w3.org/2019/wot/mqtt#ControlPacket_Type
+:ControlPacket_Type rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Class ;
+                                          owl:oneOf ( :CONNACK
+                                                      :CONNECT
+                                                      :PINGREQ
+                                                      :PINGRESP
+                                                      :PUBACK
+                                                      :PUBCOMP
+                                                      :PUBLISH
+                                                      :PUBREC
+                                                      :PUBREL
+                                                      :Reserved
+                                                      :SUBACK
+                                                      :SUBSCRIBE
+                                                      :UNSUBACK
+                                                      :UNSUBSCRIBE
+                                                    )
+                                        ] ;
+                    rdfs:label "ControlPacket_Type"@en .
+
+
+###  https://www.w3.org/2019/wot/mqtt#MQTT_ControlMessage
+:MQTT_ControlMessage rdf:type owl:Class ;
+                     rdfs:comment """A MQTT Control Message consists of up to three parts: fixed header ( presents in all Control Pakets), variable header, payload.
+
+A fixed header is made by a Control Packet Type (or Message Type), flags, and a variable length. Variable header (made by a list of flags) and payload are not always present."""@en ;
+                     rdfs:isDefinedBy "https://www.w3.org/2019/wot/mqtt"@en ;
+                     rdfs:label "MQTT_ControlMessage"@en .
+
+
+###  https://www.w3.org/2019/wot/mqtt#PUBLISH_payload
+:PUBLISH_payload rdf:type owl:Class ;
+                 rdfs:subClassOf :Payload .
+
+
+###  https://www.w3.org/2019/wot/mqtt#Payload
+:Payload rdf:type owl:Class .
+
+
+###  https://www.w3.org/2019/wot/mqtt#QoS
+:QoS rdf:type owl:Class .
+
+
+###  https://www.w3.org/2019/wot/mqtt#SUBACK_payload
+:SUBACK_payload rdf:type owl:Class ;
+                rdfs:subClassOf :Payload .
+
+
+###  https://www.w3.org/2019/wot/mqtt#SUBSCRIBE_payload
+:SUBSCRIBE_payload rdf:type owl:Class ;
+                   rdfs:subClassOf :Payload .
+
+
+###  https://www.w3.org/2019/wot/mqtt#Topic
+:Topic rdf:type owl:Class .
+
+
+###  https://www.w3.org/2019/wot/mqtt#UNSUBSCRIBE_payload
+:UNSUBSCRIBE_payload rdf:type owl:Class ;
+                     rdfs:subClassOf :Payload .
+
+
+###  https://www.w3.org/2019/wot/mqtt#command
+:command rdf:type owl:Class ;
+         rdfs:subClassOf :MQTT_ControlMessage .
+
+
+###  https://www.w3.org/2019/wot/mqtt#command_acknowledgment
+:command_acknowledgment rdf:type owl:Class ;
+                        rdfs:subClassOf :MQTT_ControlMessage .
+
+
+###  https://www.w3.org/2019/wot/mqtt#granted
+:granted rdf:type owl:Class ;
+         rdfs:subClassOf :QoS .
+
+
+###  https://www.w3.org/2019/wot/mqtt#requested
+:requested rdf:type owl:Class ;
+           rdfs:subClassOf :QoS .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://www.w3.org/2019/wot/mqtt#CONNACK
+:CONNACK rdf:type owl:NamedIndividual ,
+                  :ControlPacket_Type .
+
+
+###  https://www.w3.org/2019/wot/mqtt#CONNECT
+:CONNECT rdf:type owl:NamedIndividual ,
+                  :ControlPacket_Type ;
+         :hasPayload :connectPayload .
+
+
+###  https://www.w3.org/2019/wot/mqtt#DISCONNECT
+:DISCONNECT rdf:type owl:NamedIndividual ,
+                     :ControlPacket_Type .
+
+
+###  https://www.w3.org/2019/wot/mqtt#PINGREQ
+:PINGREQ rdf:type owl:NamedIndividual ,
+                  :ControlPacket_Type .
+
+
+###  https://www.w3.org/2019/wot/mqtt#PINGRESP
+:PINGRESP rdf:type owl:NamedIndividual ,
+                   :ControlPacket_Type .
+
+
+###  https://www.w3.org/2019/wot/mqtt#PUBACK
+:PUBACK rdf:type owl:NamedIndividual ,
+                 :ControlPacket_Type .
+
+
+###  https://www.w3.org/2019/wot/mqtt#PUBCOMP
+:PUBCOMP rdf:type owl:NamedIndividual ,
+                  :ControlPacket_Type .
+
+
+###  https://www.w3.org/2019/wot/mqtt#PUBLISH
+:PUBLISH rdf:type owl:NamedIndividual ,
+                  :ControlPacket_Type ;
+         :hasPayload :publishPayload .
+
+
+###  https://www.w3.org/2019/wot/mqtt#PUBREC
+:PUBREC rdf:type owl:NamedIndividual ,
+                 :ControlPacket_Type .
+
+
+###  https://www.w3.org/2019/wot/mqtt#PUBREL
+:PUBREL rdf:type owl:NamedIndividual ,
+                 :ControlPacket_Type .
+
+
+###  https://www.w3.org/2019/wot/mqtt#Reserved
+:Reserved rdf:type owl:NamedIndividual ,
+                   :ControlPacket_Type ;
+          :enumeration 0 .
+
+
+###  https://www.w3.org/2019/wot/mqtt#SUBACK
+:SUBACK rdf:type owl:NamedIndividual ,
+                 :ControlPacket_Type .
+
+
+###  https://www.w3.org/2019/wot/mqtt#SUBSCRIBE
+:SUBSCRIBE rdf:type owl:NamedIndividual ,
+                    :ControlPacket_Type ;
+           :hasPayload :subscribePayload .
+
+
+###  https://www.w3.org/2019/wot/mqtt#UNSUBACK
+:UNSUBACK rdf:type owl:NamedIndividual ,
+                   :ControlPacket_Type .
+
+
+###  https://www.w3.org/2019/wot/mqtt#UNSUBSCRIBE
+:UNSUBSCRIBE rdf:type owl:NamedIndividual ,
+                      :ControlPacket_Type ;
+             :hasPayload :unsubscribePayload .
+
+
+###  https://www.w3.org/2019/wot/mqtt#connectPayload
+:connectPayload rdf:type owl:NamedIndividual ,
+                         :CONNECT_payload .
+
+
+###  https://www.w3.org/2019/wot/mqtt#publishPayload
+:publishPayload rdf:type owl:NamedIndividual ,
+                         :PUBLISH_payload .
+
+
+###  https://www.w3.org/2019/wot/mqtt#subackPayload
+:subackPayload rdf:type owl:NamedIndividual ,
+                        :SUBACK_payload .
+
+
+###  https://www.w3.org/2019/wot/mqtt#subscribePayload
+:subscribePayload rdf:type owl:NamedIndividual ,
+                           :SUBSCRIBE_payload .
+
+
+###  https://www.w3.org/2019/wot/mqtt#unsubscribePayload
+:unsubscribePayload rdf:type owl:NamedIndividual ,
+                             :UNSUBSCRIBE_payload .
+
+
+[ rdf:type schema:Person ;
+  schema:affiliation _:genid20 ;
+  schema:name "Ege Korkan"
+] .
+
+_:genid20 rdf:type schema:Organization ;
+           schema:name "Siemens AG" ;
+           schema:url "https://www.siemens.com/" .
+
+[ rdf:type schema:Person ;
+   schema:affiliation [ rdf:type schema:Organization ;
+                        schema:name "SmartThings" ;
+                        schema:url "https://www.smartthings.com/"
+                      ] ;
+   schema:name "Michael Koster"
+ ] .
+
+[ rdf:type schema:Person ;
+   schema:affiliation _:genid20 ;
+   schema:name "Sebastian Käbisch"
+ ] .
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
