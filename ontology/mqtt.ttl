@@ -357,82 +357,97 @@ Granted QoS levels are listed in the same order as the topic names in the corris
 
 ###  https://www.w3.org/2019/wot/mqtt#CONNACK
 :CONNACK rdf:type owl:NamedIndividual ,
-                  :ControlPacket_Type .
+                  :ControlPacket_Type ;
+         :enumeration 2 .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#CONNECT
 :CONNECT rdf:type owl:NamedIndividual ,
                   :ControlPacket_Type ;
-         :hasPayload :connectPayload .
+         :hasPayload :connectPayload ;
+         :enumeration 1 .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#DISCONNECT
 :DISCONNECT rdf:type owl:NamedIndividual ,
-                     :ControlPacket_Type .
+                     :ControlPacket_Type ;
+            :enumeration 14 .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#PINGREQ
 :PINGREQ rdf:type owl:NamedIndividual ,
-                  :ControlPacket_Type .
+                  :ControlPacket_Type ;
+         :enumeration 12 .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#PINGRESP
 :PINGRESP rdf:type owl:NamedIndividual ,
-                   :ControlPacket_Type .
+                   :ControlPacket_Type ;
+          :enumeration 13 .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#PUBACK
 :PUBACK rdf:type owl:NamedIndividual ,
-                 :ControlPacket_Type .
+                 :ControlPacket_Type ;
+        :enumeration 4 .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#PUBCOMP
 :PUBCOMP rdf:type owl:NamedIndividual ,
-                  :ControlPacket_Type .
+                  :ControlPacket_Type ;
+         :enumeration 7 .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#PUBLISH
 :PUBLISH rdf:type owl:NamedIndividual ,
                   :ControlPacket_Type ;
-         :hasPayload :publishPayload .
+         :hasPayload :publishPayload ;
+         :enumeration 3 .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#PUBREC
 :PUBREC rdf:type owl:NamedIndividual ,
-                 :ControlPacket_Type .
+                 :ControlPacket_Type ;
+        :enumeration 5 .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#PUBREL
 :PUBREL rdf:type owl:NamedIndividual ,
-                 :ControlPacket_Type .
+                 :ControlPacket_Type ;
+        :enumeration 6 .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#Reserved
 :Reserved rdf:type owl:NamedIndividual ,
                    :ControlPacket_Type ;
-          :enumeration 0 .
+          :enumeration 0 ,
+                       15 .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#SUBACK
 :SUBACK rdf:type owl:NamedIndividual ,
-                 :ControlPacket_Type .
+                 :ControlPacket_Type ;
+        :enumeration 9 .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#SUBSCRIBE
 :SUBSCRIBE rdf:type owl:NamedIndividual ,
                     :ControlPacket_Type ;
-           :hasPayload :subscribePayload .
+           :hasPayload :subscribePayload ;
+           :enumeration 8 .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#UNSUBACK
 :UNSUBACK rdf:type owl:NamedIndividual ,
-                   :ControlPacket_Type .
+                   :ControlPacket_Type ;
+          :enumeration 11 .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#UNSUBSCRIBE
 :UNSUBSCRIBE rdf:type owl:NamedIndividual ,
                       :ControlPacket_Type ;
-             :hasPayload :unsubscribePayload .
+             :hasPayload :unsubscribePayload ;
+             :enumeration 10 .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#connectPayload
