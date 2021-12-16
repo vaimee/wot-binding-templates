@@ -229,7 +229,11 @@ schema:Person rdf:type owl:Class .
 
 ###  https://www.w3.org/2019/wot/mqtt#CONNECT_payload
 :CONNECT_payload rdf:type owl:Class ;
-                 rdfs:subClassOf :Payload .
+                 rdfs:subClassOf :Payload ;
+                 rdfs:comment """Payload of a CONNECT Control Packet Type.
+
+The payload contains one or more UTF-8 encoded strings. They specify a unique identifier for the client, a Will topic and message and the User Name and Password to use. All but the first are optional and their presence is determined based on flags in variable header."""@en ;
+                 rdfs:label "CONNECT_payload"@en .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#ControlPacket_Type
@@ -251,12 +255,14 @@ schema:Person rdf:type owl:Class .
                                                       :UNSUBSCRIBE
                                                     )
                                         ] ;
+                    rdfs:comment "A packet of information is sent across the Network Connection. The MQTT specification defines fourteen different types of Control Packet, one of which (the PUBLISH packet) is use to convey Application Messages."@en ;
                     rdfs:label "ControlPacket_Type"@en .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#MQTT_ControlMessage
 :MQTT_ControlMessage rdf:type owl:Class ;
-                     rdfs:comment """A MQTT Control Message consists of up to three parts: fixed header ( presents in all Control Pakets), variable header, payload.
+                     rdfs:comment """The MQTT protocol works by exchanging a series of MQTT Control Messages ( or Packets) between Client and Server. 
+A MQTT Control Message consists of up to three parts: fixed header ( presents in all Control Pakets), variable header, payload.
 
 A fixed header is made by a Control Packet Type (or Message Type), flags, and a variable length. Variable header (made by a list of flags) and payload are not always present."""@en ;
                      rdfs:isDefinedBy "https://www.w3.org/2019/wot/mqtt"@en ;
@@ -265,54 +271,84 @@ A fixed header is made by a Control Packet Type (or Message Type), flags, and a 
 
 ###  https://www.w3.org/2019/wot/mqtt#PUBLISH_payload
 :PUBLISH_payload rdf:type owl:Class ;
-                 rdfs:subClassOf :Payload .
+                 rdfs:subClassOf :Payload ;
+                 rdfs:comment "Payload of a PUBLISH Control Packet Type (optional not required): it contains the Application Message that is being published, the content and the format of the data is application specific."@en ;
+                 rdfs:label "PUBLISH_payload"@en .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#Payload
-:Payload rdf:type owl:Class .
+:Payload rdf:type owl:Class ;
+         rdfs:comment "Some MQTT Control Packets contain a payload as the final part of the pocket. In particular, a payload is required for the follow Control Packets Type: CONNECT, SUBSCRIBE, SUBACK, UNSUBSCRIBE. A payload is an optional for the PUBLISH Control Packet Type."@en ;
+         rdfs:label "Payload"@en .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#QoS
-:QoS rdf:type owl:Class .
+:QoS rdf:type owl:Class ;
+     rdfs:comment "QoS level paired to a specific Topic Filter used in a SUBSCRIBE or SUBACK packet payload."@en ;
+     rdfs:label "QoS"@en .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#SUBACK_payload
 :SUBACK_payload rdf:type owl:Class ;
-                rdfs:subClassOf :Payload .
+                rdfs:subClassOf :Payload ;
+                rdfs:comment """Payload of a SUBACK Control Packet Type.
+
+The payload contains a list of granted QoS level at which the administrators for the server have permitted the client to subscribe to a particular Topic name. Granted QoS level are listed in the same order as the topic names in the corresponding SUBSCRIBE message."""@en ;
+                rdfs:label "SUBACK_payload"@en .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#SUBSCRIBE_payload
 :SUBSCRIBE_payload rdf:type owl:Class ;
-                   rdfs:subClassOf :Payload .
+                   rdfs:subClassOf :Payload ;
+                   rdfs:comment """Payload of a SUBSCRIBE Control Packet Type. 
+
+The payload contains a list of topic filters ( UTF-8 encoded strings) to which the client can subscribe, and the requested QoS level. It contains at least one Topic Filter/QoS pair."""@en ;
+                   rdfs:label "SUBSCRIBE_payload"@en .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#Topic
-:Topic rdf:type owl:Class .
+:Topic rdf:type owl:Class ;
+       rdfs:comment """List of Topic Filters indicating the Topic to which the client wants to subscribe or unsubscribe from. 
+These strings are UTF-encoding."""@en ;
+       rdfs:label "Topic Filters"@en .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#UNSUBSCRIBE_payload
 :UNSUBSCRIBE_payload rdf:type owl:Class ;
-                     rdfs:subClassOf :Payload .
+                     rdfs:subClassOf :Payload ;
+                     rdfs:comment """Payload of an UNSUBSCRIBE Control Packets Type.
+
+The payload contains the list of the topic filters ( UTF-8 encoded strings) that the client wishes to unsubscribe from."""@en ;
+                     rdfs:label "UNSUBSCRIBE_payload"@en .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#command
 :command rdf:type owl:Class ;
-         rdfs:subClassOf :MQTT_ControlMessage .
+         rdfs:subClassOf :MQTT_ControlMessage ;
+         rdfs:comment "A command message is a MQTT Control Message sent by Client to the Server."@en ;
+         rdfs:label "command"@en .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#command_acknowledgment
 :command_acknowledgment rdf:type owl:Class ;
-                        rdfs:subClassOf :MQTT_ControlMessage .
+                        rdfs:subClassOf :MQTT_ControlMessage ;
+                        rdfs:comment "Each command message has an associated acknoledgment: a command acknowledgment message is a MQTT Command Message sent by Server to Client."@en ;
+                        rdfs:label "command_acknowledgment"@en .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#granted
 :granted rdf:type owl:Class ;
-         rdfs:subClassOf :QoS .
+         rdfs:subClassOf :QoS ;
+         rdfs:comment """A payload of a SUBACK packet is formed by a list of granted QoS levels. These are the QoS level at which the administrator for the server have permetted the client to subscribe to a particular Topic name.
+Granted QoS levels are listed in the same order as the topic names in the corrisponding SUBSCRIBE packet."""@en ;
+         rdfs:label "granted QoS"@en .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#requested
 :requested rdf:type owl:Class ;
-           rdfs:subClassOf :QoS .
+           rdfs:subClassOf :QoS ;
+           rdfs:comment "Requested QoS, referring a specific Topic name, defines the QoS level at which the client wants to receive the messages in a SUBSCRIBE packet."@en ;
+           rdfs:label "requested QoS"@en .
 
 
 #################################################################
