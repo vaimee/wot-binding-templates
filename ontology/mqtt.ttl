@@ -96,6 +96,15 @@ schema:url rdf:type owl:AnnotationProperty .
 #    Data properties
 #################################################################
 
+###  https://www.w3.org/2019/wot/mqtt#QoSLevel
+:QoSLevel rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :payload_properties ;
+          rdfs:domain :QoS ,
+                      :granted ,
+                      :requested ;
+          rdfs:range xsd:int .
+
+
 ###  https://www.w3.org/2019/wot/mqtt#clientID
 :clientID rdf:type owl:DatatypeProperty ;
           rdfs:subPropertyOf :payload_properties ;
@@ -119,16 +128,11 @@ schema:url rdf:type owl:AnnotationProperty .
                  rdfs:label "fixedHeaderFlag"@en .
 
 
-###  https://www.w3.org/2019/wot/mqtt#grantedQoS
-:grantedQoS rdf:type owl:DatatypeProperty ;
-            rdfs:subPropertyOf :payload_properties ;
-            rdfs:domain :granted ;
-            rdfs:range xsd:int .
-
-
 ###  https://www.w3.org/2019/wot/mqtt#hasDUPFlag
 :hasDUPFlag rdf:type owl:DatatypeProperty ;
             rdfs:subPropertyOf :fixedHeaderFlag ;
+            rdfs:domain :MQTT_ControlMessage ;
+            rdfs:range xsd:int ;
             schema:domainIncludes :SUBSCRIBEPacket ;
             rdfs:comment "If the DUP flag is set, it indicates that this might be re-delivery of an earlier attempt to send the packet."@en ;
             rdfs:isDefinedBy <https://www.w3.org/2019/wot/mqtt> ;
@@ -138,6 +142,8 @@ schema:url rdf:type owl:AnnotationProperty .
 ###  https://www.w3.org/2019/wot/mqtt#hasQoSFlag
 :hasQoSFlag rdf:type owl:DatatypeProperty ;
             rdfs:subPropertyOf :fixedHeaderFlag ;
+            rdfs:domain :MQTT_ControlMessage ;
+            rdfs:range xsd:int ;
             schema:domainIncludes :SUBSCRIBEPacket ;
             rdfs:comment "This field indicates the level of assurance for delivery of an Application Message."@en ;
             rdfs:isDefinedBy <https://www.w3.org/2019/wot/mqtt> ;
@@ -147,6 +153,8 @@ schema:url rdf:type owl:AnnotationProperty .
 ###  https://www.w3.org/2019/wot/mqtt#hasRETAINFlag
 :hasRETAINFlag rdf:type owl:DatatypeProperty ;
                rdfs:subPropertyOf :fixedHeaderFlag ;
+               rdfs:domain :MQTT_ControlMessage ;
+               rdfs:range xsd:int ;
                schema:domainIncludes :SUBSCRIBEPacket ;
                rdfs:comment "If the RETAIN flag is set to 1 in a PUBLISH packet sent by a Client to a Server, the Server must replace any existing retained message for this topic and store the Application Message, so that it can be delivered to future subscribers whose subscriptions match its Topic Name."@en ;
                rdfs:isDefinedBy <https://www.w3.org/2019/wot/mqtt> ;
@@ -168,13 +176,6 @@ schema:url rdf:type owl:AnnotationProperty .
 
 ###  https://www.w3.org/2019/wot/mqtt#payload_properties
 :payload_properties rdf:type owl:DatatypeProperty .
-
-
-###  https://www.w3.org/2019/wot/mqtt#requestedQoS
-:requestedQoS rdf:type owl:DatatypeProperty ;
-              rdfs:subPropertyOf :payload_properties ;
-              rdfs:domain :requested ;
-              rdfs:range xsd:int .
 
 
 ###  https://www.w3.org/2019/wot/mqtt#topicName
