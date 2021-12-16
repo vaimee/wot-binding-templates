@@ -212,7 +212,7 @@ schema:url rdf:type owl:AnnotationProperty .
 ###  https://www.w3.org/2019/wot/mqtt#willTopic
 :willTopic rdf:type owl:DatatypeProperty ;
            rdfs:subPropertyOf :payload_properties ;
-           rdfs:domain :Payload ;
+           rdfs:domain :CONNECT_payload ;
            rdfs:range xsd:string .
 
 
